@@ -3,6 +3,9 @@ var app = angular.module('homeApp', []);
 app.controller('homeCtrl', ['$scope','$filter',function($scope, $filter) {
     var ctrl = $scope.ctrl = {};
 	ctrl.weekOf = new Date();
+	ctrl.showAC = true;
+	ctrl.showEP = true
+	
 	ctrl.epRotation = [{boss:'Bok Litur, Hunger of Xol',weapon:'All weapons'},
 		{boss:'Nur Abath, Crest of Xol',weapon:'Shotgun'},{boss:'Kathok, Roar of Xol',weapon:'SMG'},
 		{boss:'Damkath, The Mask',weapon:'Sniper Rifle'},{boss:'Naksud, The Famine',weapon:'All weapons'}];
@@ -21,7 +24,12 @@ app.controller('homeCtrl', ['$scope','$filter',function($scope, $filter) {
 	//adjust the height of the video
 	acPlayer.height = acPlayer.parentElement.scrollWidth / 1.8;
 	
-	
+	ctrl.collapseAC = function(){
+		ctrl.showAC = !ctrl.showAC;
+	}
+	ctrl.collapseEP = function(){
+		ctrl.showEP = !ctrl.showEP;
+	}
 
 	function calculateHowManyWeeks () {
 		var today = new Date();

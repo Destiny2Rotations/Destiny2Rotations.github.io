@@ -16,7 +16,10 @@ app.controller('homeCtrl', ['$scope','$filter',function($scope, $filter) {
 	ctrl.epCurrentRotation = ctrl.epRotation[epRemainder];
 	var acRemainder = numberOfResets % 6;
 	ctrl.ascendantChallengeCurrent = ctrl.ascendantChallengeRotation[acRemainder];
-	$("#ascendentChallengePlayer")[0].data = ctrl.ascendantChallengeCurrent.url;
+	var acPlayer = $("#ascendentChallengePlayer")[0];
+	acPlayer.data = ctrl.ascendantChallengeCurrent.url;
+	//adjust the height of the video
+	acPlayer.height = acPlayer.parentElement.scrollWidth / 1.8;
 	
 	
 

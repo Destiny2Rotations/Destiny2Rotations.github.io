@@ -14,13 +14,13 @@
 <body>
 	<div ng-app="homeApp" ng-controller="homeCtrl">
 		<h1>Week of {{ctrl.weekOf}}</h1>
-		<section id="section_ascendantChallenge" class="page-section">
+		<section id="section_ascendantChallenge" class="col-md-6 col-sm-12">
 		  <h2>Ascendant Challenge</h2>
 		  <h4>{{ctrl.ascendantChallengeCurrent.location}}</h4>
-		  <img width="640" ng-src="{{ctrl.ascendantChallengeCurrent.img}}"></img> <br /><br />
-		  <object id="ascendentChallengePlayer" width="640" height="360" frameborder="0" allowfullscreen></object>
+		  <img width="100%" ng-src="{{ctrl.ascendantChallengeCurrent.img}}"></img> <br /><br />
+		  <object id="ascendentChallengePlayer" width="100%" height="360" frameborder="0" allowfullscreen></object>
 		</section>
-		<section id="section_escalationProtocol" class="page-section">
+		<section id="section_escalationProtocol" class="col-md-6 col-sm-12">
 		  <h2>Escalation Protocol</h2>
 		  <h3>{{ctrl.epCurrentRotation.weapon}}</h3>
 		  <h4>{{ctrl.epCurrentRotation.boss}}</h4>

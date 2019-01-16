@@ -12,16 +12,17 @@
 
 <body>
 	<div ng-app="homeApp" ng-controller="homeCtrl">
+		<h1>Week of {{ctrl.weekOf}}</h1>
 		<section id="section_ascendantChallenge" class="page-section">
-		  <h1>Ascendant Challenge</h1>
-		  <h3>{{ctrl.ascendantChallengeCurrent.location}}</h3>
+		  <h2>Ascendant Challenge</h2>
+		  <h4>{{ctrl.ascendantChallengeCurrent.location}}</h4>
 		  <img width="640" ng-src="{{ctrl.ascendantChallengeCurrent.img}}"></img> <br /><br />
 		  <object id="ascendentChallengePlayer" width="640" height="360" frameborder="0" allowfullscreen></object>
 		</section>
 		<section id="section_escalationProtocol" class="page-section">
-		  <h1>Escalation Protocol</h1>
-		  <h2>{{ctrl.epCurrentRotation.weapon}}</h3>
-		  <h3>{{ctrl.epCurrentRotation.boss}}</h2>
+		  <h2>Escalation Protocol</h2>
+		  <h3>{{ctrl.epCurrentRotation.weapon}}</h3>
+		  <h4>{{ctrl.epCurrentRotation.boss}}</h4>
 		</section>
 	</div>
 </body>

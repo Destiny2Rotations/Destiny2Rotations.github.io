@@ -4,11 +4,13 @@ app.controller('homeCtrl', ['$scope','$filter',function($scope, $filter) {
     var ctrl = $scope.ctrl = {};
 	ctrl.weekOf = new Date();
 	ctrl.showAC = true;
-	ctrl.showEP = true
+	ctrl.showEP = true;
+	ctrl.showCurseWeek = true;
+	ctrl.curseStrength = "";
 	
-	ctrl.epRotation = [{boss:'Bok Litur, Hunger of Xol',weapon:'All Weapons', weaponImg:"images/ep/allWeapons.jpg"},
+	ctrl.epRotation = [{boss:'Bok Litur, Hunger of Xol',weapon:'ALL WEAPONS', weaponImg:"images/ep/allWeapons.jpg"},
 		{boss:'Nur Abath, Crest of Xol',weapon:'IKELOS_SG_v1.0.1', weaponImg:"images/ep/IKELOS_SG_v1.0.1.jpg"},{boss:'Kathok, Roar of Xol',weapon:'IKELOS_SMG_v1.0.1', weaponImg:"images/ep/IKELOS_SMG_v1.0.1.jpg"},
-		{boss:'Damkath, The Mask',weapon:'IKELOS_SR_v1.0.1', weaponImg:"images/ep/IKELOS_SR_v1.0.1.jpg"},{boss:'Naksud, The Famine',weapon:'All Weapons', weaponImg:"images/ep/allWeapons.jpg"}];
+		{boss:'Damkath, The Mask',weapon:'IKELOS_SR_v1.0.1', weaponImg:"images/ep/IKELOS_SR_v1.0.1.jpg"},{boss:'Naksud, The Famine',weapon:'ALL WEAPONS', weaponImg:"images/ep/allWeapons.jpg"}];
 	ctrl.ascendantChallengeRotation = [{location:"Chamber of Starlight",url:"https://www.youtube.com/embed/cII9tBsNen4",img:"images/ac/0.jpg"},{location:"Aphelion's Rest",url:"https://www.youtube.com/embed/POLB_0Z7asE",img:"images/ac/1.jpg"},
 		{location:"Garden of Esila",url:"https://www.youtube.com/embed/6DmWzQjE3Yw",img:"images/ac/2.jpg"},{location:"Spine of Keres",url:"https://www.youtube.com/embed/trzuqFHddoc",img:"images/ac/3.jpg"},
 		{location:"Harbinger's Seclude",url:"https://www.youtube.com/embed/Eb4uT-Ifdg4",img:"images/ac/4.jpg"},{location:"Bay of Drowned Wishes",url:"https://www.youtube.com/embed/QFScdhlrKJ0",img:"images/ac/5.jpg"}];
@@ -22,6 +24,9 @@ app.controller('homeCtrl', ['$scope','$filter',function($scope, $filter) {
 	}
 	ctrl.collapseEP = function(){
 		ctrl.showEP = !ctrl.showEP;
+	}
+	ctrl.collapseCurseWeek = function(){
+		ctrl.showCurseWeek = !ctrl.showCurseWeek;
 	}
 	
 	ctrl.previewNextWeek = function(){
@@ -41,12 +46,31 @@ app.controller('homeCtrl', ['$scope','$filter',function($scope, $filter) {
 	function setWeek(){
 		var epRemainder = numberOfResets % 5;
 		ctrl.epCurrentRotation = ctrl.epRotation[epRemainder];
+		
 		var acRemainder = numberOfResets % 6;
 		ctrl.ascendantChallengeCurrent = ctrl.ascendantChallengeRotation[acRemainder];
 		var acPlayer = $("#ascendentChallengePlayer")[0];
 		acPlayer.src = ctrl.ascendantChallengeCurrent.url;
 		//adjust the height of the video
 		acPlayer.height = acPlayer.parentElement.scrollWidth / 1.8;
+		
+		var curseStrengthRemainder = numberOfResets % 3;
+		switch (curseStrengthRemainder){
+			case 0:
+				ctrl.curseStrengthStyle = {color: 'Goldenrod'};
+				ctrl.curseStrength = "Medium"
+				break;
+			case 1:
+				ctrl.curseStrengthStyle = {color: 'red', 'font-weight': 'bold'};
+				ctrl.curseStrength = "Maximum"
+				break;
+			case 2:
+				ctrl.curseStrengthStyle = {color: 'Lime'};
+				ctrl.curseStrength = "Low"
+				break;
+		}
+			
+		ctrl.ascendantChallengeCurrent = ctrl.ascendantChallengeRotation[acRemainder];
 	}
 	
 	function calculateHowManyWeeks () {

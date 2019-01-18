@@ -17,6 +17,7 @@ app.controller('homeCtrl', ['$scope','$filter',function($scope, $filter) {
 	
 	var numberOfResets = calculateHowManyWeeks();
 	setWeek();
+	//loadAPI();
 	ctrl.previewing = false;
 	
 	ctrl.collapseAC = function(){
@@ -78,7 +79,8 @@ app.controller('homeCtrl', ['$scope','$filter',function($scope, $filter) {
 		var firstReset = new Date('2019-01-01');
 		firstReset.setUTCHours(17, 0, 0, 0);
 		//how many weeks have passed since jan 1 2019
-		var weeksIn = Math.floor((Date.UTC(today.getFullYear(), today.getMonth(), today.getDate()) - Date.UTC(firstReset.getFullYear(), firstReset.getMonth(), firstReset.getDate()) ) /(1000 * 60 * 60 * 24 * 7));
+		var weeksIn = Math.floor((Date.UTC(today.getFullYear(), today.getMonth(), today.getDate()) - Date.UTC(firstReset.getFullYear(), firstReset.getMonth(), firstReset.getDate()) ) /(1000 * 60 * 60 * 24));
+		weeksIn = weeksIn / 7;
 		//if the day is reset day check the time
 		if(weeksIn % 1 == 0){ 
 			if(today.getHours() < firstReset.getHours()){
@@ -91,5 +93,48 @@ app.controller('homeCtrl', ['$scope','$filter',function($scope, $filter) {
 
 		return weeksIn;
 	}
+	
+	// function loadAPI(){
+		// // Create a request variable and assign a new XMLHttpRequest object to it.
+		// var request = new XMLHttpRequest();
+
+		// // Open a new connection, using the GET request on the URL endpoint
+		// request.open('GET', 'https://www.bungie.net/Platform/Destiny2/Manifest/', true);
+		
+		// request.setRequestHeader('X-API-Key','0181ee9fb3bf4b81b96cd0046a8c2f6b')
+
+		// request.onload = function () {
+			// var data = JSON.parse(this.response);
+			// data = data.Response.jsonWorldContentPaths.en;
+			// $.ajax({
+			  // url: "https://www.bungie.net" + data,
+			  // dataType: "json",
+			  // success: function(response) {
+				// ctrl.itemCache = Object.keys(response.DestinyInventoryItemDefinition).map(function(key) {
+				  // return response.DestinyInventoryItemDefinition[key];
+				// });
+				// ctrl.adaInfo = response.DestinyVendorDefinition[2917531897];
+				// ctrl.saladinInfo = response.DestinyVendorDefinition[895295461];
+				// var temp = $filter('filter')(ctrl.adaInfo.itemList,{displayCategoryIndex: 3}, true);
+				// ctrl.newArray = [];
+				// temp.forEach(function(dataItem){
+					// dataItem.aaItemInfo = getItemInfo(dataItem.itemHash);					
+				// });
+				// var temp3 = JSON.stringify(temp[0]);
+				// var temp4 = JSON.stringify(temp[1]);
+				// var tempx = "";
+			  // }
+			// });
+		// }
+		// // Send request
+		// request.send();
+	// }
+	
+	// function getItemInfo(hashInput){
+		// if(ctrl.itemCache){
+			// return $filter('filter')(ctrl.itemCache,{hash: hashInput}, true)[0];
+		// }
+		// return false;
+	// }
 	
 }]);

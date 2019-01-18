@@ -20,63 +20,66 @@
 			<h6 class="noselect" style="cursor:pointer;" ng-click="ctrl.previewNextWeek()" ng-show="ctrl.previewing"> <a>back to current week</a> </h6>
 		</section>
 		<!--Column 1-->
-		<div class="col-sm-12">
-			<div class="col-md-6">
-				<!--Ascendant Challenge-->
-				<section id="section_ascendantChallenge" class="panel panel-default">
-					<div class="panel-heading">
-						<h3 class="noselect" style="cursor:pointer;" ng-click="ctrl.collapseAC()">
-							Ascendant Challenge
-							<i ng-show="ctrl.showAC" class="fa fa-chevron-down pull-right"></i>
-							<i ng-show="!ctrl.showAC" class="fa fa-chevron-up pull-right"></i>
-						</h3>
-					</div>
-					<div ng-show="ctrl.showAC" class="panel-body">
-						<h4>{{ctrl.ascendantChallengeCurrent.location}}</h4>
-						<img width="100%" ng-src="{{ctrl.ascendantChallengeCurrent.img}}"></img> <br /><br />
-						<iframe id="ascendentChallengePlayer" width="100%" height="360" frameborder="0" allowfullscreen></iframe>
-						<span class="pull-right" style="font-size:8pt">credit to <a href="https://www.youtube.com/channel/UCALMzqzajfpykplPBDqPMoA">Ninja Pups</a></span>
-					</div>
-				</section>
-			</div>
-			<!--Column 2-->
-			<div class="col-md-6">
-				<!--Escalation Protocol-->
-				<section id="section_escalationProtocol" class="panel panel-default">
-					<div class="panel-heading">
-						<h3 class="noselect visible-md-*" style="cursor:pointer;" ng-click="ctrl.collapseEP()">
-							Escalation Protocol
-							<i ng-show="ctrl.showEP" class="fa fa-chevron-down pull-right"></i>
-							<i ng-show="!ctrl.showEP" class="fa fa-chevron-up pull-right"></i>
-						</h3>
-					</div>
-					<div ng-show="ctrl.showEP" class="panel-body">
-						<h4>{{ctrl.epCurrentRotation.boss}}</h3>
-						<img ng-src="{{ctrl.epCurrentRotation.weaponImg}}"></></img>
-						<h4>{{ctrl.epCurrentRotation.weapon}}</h3>
-					</div>
-				</section>
-				<!--Curse Week-->
-				<section id="section_curseWeek" class="panel panel-default">
-					<div class="panel-heading">
-						<h3 class="noselect" style="cursor:pointer;" ng-click="ctrl.collapseCurseWeek()">
-							Curse Strength
-							<i ng-show="ctrl.showCurseWeek" class="fa fa-chevron-down pull-right"></i>
-							<i ng-show="!ctrl.showCurseWeek" class="fa fa-chevron-up pull-right"></i>
-						</h3>
-					</div>
-					<div ng-show="ctrl.showCurseWeek" class="panel-body">
-						<h4>The Curse is at <span ng-style="ctrl.curseStrengthStyle">{{ctrl.curseStrength}}</span> strength</h4>
-					</div>
-				</section>
-			</div>
-		</div>		
+		<div class="col-md-6 col-sm-12">
+			<!--Ascendant Challenge-->
+			<section id="section_ascendantChallenge" class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="noselect" style="cursor:pointer;" ng-click="ctrl.collapseAC()">
+						Ascendant Challenge
+						<i ng-show="ctrl.showAC" class="fa fa-chevron-down pull-right"></i>
+						<i ng-show="!ctrl.showAC" class="fa fa-chevron-up pull-right"></i>
+					</h3>
+				</div>
+				<div ng-show="ctrl.showAC" class="panel-body">
+					<h4>{{ctrl.ascendantChallengeCurrent.location}}</h4>
+					<img width="100%" ng-src="{{ctrl.ascendantChallengeCurrent.img}}"></img> <br /><br />
+					<iframe id="ascendentChallengePlayer" width="100%" height="360" frameborder="0" allowfullscreen></iframe>
+					<span class="pull-right" style="font-size:8pt">credit to <a href="https://www.youtube.com/channel/UCALMzqzajfpykplPBDqPMoA">Ninja Pups</a></span>
+				</div>
+			</section>
+		</div>
+		<!--Column 2-->
+		<div class="col-md-6 col-sm-12">
+			<!--Escalation Protocol-->
+			<section id="section_escalationProtocol" class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="noselect visible-md-*" style="cursor:pointer;" ng-click="ctrl.collapseEP()">
+						Escalation Protocol
+						<i ng-show="ctrl.showEP" class="fa fa-chevron-down pull-right"></i>
+						<i ng-show="!ctrl.showEP" class="fa fa-chevron-up pull-right"></i>
+					</h3>
+				</div>
+				<div ng-show="ctrl.showEP" class="panel-body">
+					<h4>{{ctrl.epCurrentRotation.boss}}</h3>
+					<img ng-src="{{ctrl.epCurrentRotation.weaponImg}}"></></img>
+					<h4>{{ctrl.epCurrentRotation.weapon}}</h3>
+				</div>
+			</section>
+			<!--Curse Week-->
+			<section id="section_curseWeek" class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="noselect" style="cursor:pointer;" ng-click="ctrl.collapseCurseWeek()">
+						Curse Strength
+						<i ng-show="ctrl.showCurseWeek" class="fa fa-chevron-down pull-right"></i>
+						<i ng-show="!ctrl.showCurseWeek" class="fa fa-chevron-up pull-right"></i>
+					</h3>
+				</div>
+				<div ng-show="ctrl.showCurseWeek" class="panel-body">
+					<h4>The Curse is at <span ng-style="ctrl.curseStrengthStyle">{{ctrl.curseStrength}}</span> strength</h4>
+				</div>
+			</section>
+		</div>
 	</div>
 </body>
 
 <style>
 	html {
 		overflow-y: scroll;
+	}
+	
+	.col-sm-12 {
+		padding-right: 5px;
+		padding-left: 5px;
 	}
 	
 	.noselect {

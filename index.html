@@ -68,6 +68,20 @@
 					<h4>The Curse is at <span ng-style="ctrl.curseStrengthStyle">{{ctrl.curseStrength}}</span> strength</h4>
 				</div>
 			</section>
+			<!--Whisper of the Worm-->
+			<section id="section_curseWeek" class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="noselect" style="cursor:pointer;" ng-click="ctrl.collapseWhisper()">
+						Whisper of the Worm <span ng-if="ctrl.whisperActive"> - ACTIVE</span>
+						<i ng-show="ctrl.showWhisper" class="fa fa-chevron-down pull-right"></i>
+						<i ng-show="!ctrl.showWhisper" class="fa fa-chevron-up pull-right"></i>
+					</h3>
+				</div>
+				<div ng-show="ctrl.showWhisper" class="panel-body">
+					<img width="60px" ng-src="images/elements/{{ctrl.whisperElement}}.png"></></img>
+					<h4>Heroic Whisper of the Worm is <span ng-style="ctrl.whisperStyle">{{ctrl.whisperElement}}</span> singe</h4>
+				</div>
+			</section>
 		</div>
 	</div>
 </body>

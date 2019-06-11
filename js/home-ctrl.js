@@ -6,7 +6,7 @@ app.controller('homeCtrl', ['$scope','$filter',function($scope, $filter) {
 	ctrl.showAC = true;
 	ctrl.showEP = true;
 	ctrl.showCurseWeek = true;
-	ctrl.showWhisper = false;
+	ctrl.showWhisper = true;
 	ctrl.curseStrength = "";
 	
 	ctrl.epRotation = [{boss:'Bok Litur, Hunger of Xol',weapon:'ALL WEAPONS', weaponImg:"images/ep/allWeapons.jpg", bossMechanic: 'Very high HP, extra orbs of light dropped by "Battery Acolytes".'},
@@ -74,21 +74,21 @@ app.controller('homeCtrl', ['$scope','$filter',function($scope, $filter) {
 				ctrl.curseStrength = "Medium"
 				ascendantChestPlayer.src = 'https://www.youtube.com/embed/7WvxeOnhClY';
 				ctrl.whisperStyle = {color: 'Aqua'};
-				ctrl.whisperElement = "arc"
+				ctrl.whisperElement = "void"
 				break;
 			case 1:
 				ctrl.curseStrengthStyle = {color: 'red', 'font-weight': 'bold'};
 				ctrl.curseStrength = "Maximum"
 				ascendantChestPlayer.src = 'https://www.youtube.com/embed/Bwgwa6HpXTI';
 				ctrl.whisperStyle = {color: 'Red'};
-				ctrl.whisperElement = "solar"
+				ctrl.whisperElement = "arc"
 				break;
 			case 2:
 				ctrl.curseStrengthStyle = {color: 'Lime'};
 				ctrl.curseStrength = "Low"
 				ascendantChestPlayer.src = 'https://www.youtube.com/embed/6tJZXAa57fY?start=50';
 				ctrl.whisperStyle = {color: 'Fuchsia'};
-				ctrl.whisperElement = "void"
+				ctrl.whisperElement = "solar"
 				break;
 		}
 		//adjust the height of the video
@@ -112,11 +112,7 @@ app.controller('homeCtrl', ['$scope','$filter',function($scope, $filter) {
 			weeksIn = Math.floor(weeksIn)
 		}
 		
-		if((today.getDay() == 5 && today.getHours() > todaysReset.getHours()) || today.getDay() == 6 || today.getDay() == 0 || (today.getDay() == 1 && today.getHours() < todaysReset.getHours())){
-			ctrl.whisperActive = true;
-			ctrl.showWhisper = true;
-		}
-		ctrl.weekOf.setDate(firstReset.getDate() + (weeksIn * 7));
+		ctrl.weekOf = new Date(firstReset.getTime() + weeksIn*7*86400000)
 
 		return weeksIn;
 	}

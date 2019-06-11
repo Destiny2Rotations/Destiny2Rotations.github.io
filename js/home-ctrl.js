@@ -73,21 +73,21 @@ app.controller('homeCtrl', ['$scope','$filter',function($scope, $filter) {
 				ctrl.curseStrengthStyle = {color: 'Goldenrod'};
 				ctrl.curseStrength = "Medium"
 				ascendantChestPlayer.src = 'https://www.youtube.com/embed/7WvxeOnhClY';
-				ctrl.whisperStyle = {color: 'Aqua'};
+				ctrl.whisperStyle = {color: 'Fuchsia'};
 				ctrl.whisperElement = "void"
 				break;
 			case 1:
 				ctrl.curseStrengthStyle = {color: 'red', 'font-weight': 'bold'};
 				ctrl.curseStrength = "Maximum"
 				ascendantChestPlayer.src = 'https://www.youtube.com/embed/Bwgwa6HpXTI';
-				ctrl.whisperStyle = {color: 'Red'};
+				ctrl.whisperStyle = {color: 'Aqua'};
 				ctrl.whisperElement = "arc"
 				break;
 			case 2:
 				ctrl.curseStrengthStyle = {color: 'Lime'};
 				ctrl.curseStrength = "Low"
 				ascendantChestPlayer.src = 'https://www.youtube.com/embed/6tJZXAa57fY?start=50';
-				ctrl.whisperStyle = {color: 'Fuchsia'};
+				ctrl.whisperStyle = {color: 'Red'};
 				ctrl.whisperElement = "solar"
 				break;
 		}

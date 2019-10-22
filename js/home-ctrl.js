@@ -1,5 +1,5 @@
 var app = angular.module('homeApp', []);
-
+//this is the main controller
 app.controller('homeCtrl', ['$scope','$filter',function($scope, $filter) {
     var ctrl = $scope.ctrl = {};
 	ctrl.weekOf = new Date();

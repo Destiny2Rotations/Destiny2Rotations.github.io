@@ -3,11 +3,14 @@ var app = angular.module('homeApp', []);
 app.controller('homeCtrl', ['$scope','$filter',function($scope, $filter) {
     var ctrl = $scope.ctrl = {};
 	ctrl.weekOf = new Date();
+	ctrl.curation = {};
 	ctrl.showAC = true;
 	ctrl.showEP = true;
+	ctrl.showJetsRolls = false;
 	ctrl.showCurseWeek = true;
 	ctrl.showWhisper = true;
 	ctrl.curseStrength = "";
+	ctrl.curationQuickSearch = "";
 	
 	ctrl.epRotation = [{boss:'Bok Litur, Hunger of Xol',weapon:'ALL WEAPONS', weaponImg:"images/ep/allWeapons.jpg", bossMechanic: 'Very high HP, extra orbs of light dropped by "Battery Acolytes".'},
 		{boss:'Nur Abath, Crest of Xol',weapon:'IKELOS_SG_v1.0.1', weaponImg:"images/ep/IKELOS_SG_v1.0.1.jpg", bossMechanic: 'While other Hive are near it, it becomes immune to damage.'},
@@ -24,6 +27,7 @@ app.controller('homeCtrl', ['$scope','$filter',function($scope, $filter) {
 	
 	var numberOfResets = calculateHowManyWeeks();
 	setWeek();
+	loadCuration();
 	//loadAPI();
 	ctrl.previewing = false;
 	
@@ -39,6 +43,9 @@ app.controller('homeCtrl', ['$scope','$filter',function($scope, $filter) {
 	ctrl.collapseWhisper = function(){
 		ctrl.showWhisper = !ctrl.showWhisper;
 	}
+	ctrl.collapseJetsRolls = function(){
+		ctrl.showJetsRolls = !ctrl.showJetsRolls;
+	}
 	
 	ctrl.previewNextWeek = function(){
 		if(ctrl.previewing){
@@ -52,6 +59,10 @@ app.controller('homeCtrl', ['$scope','$filter',function($scope, $filter) {
 			ctrl.weekOf.setDate(ctrl.weekOf.getDate() + 7);
 			setWeek();
 		}
+	}
+
+	ctrl.filterCuration = function(){
+		alert(ctrl.curationQuickSearch);
 	}
 	
 	function setWeek(){
@@ -117,6 +128,57 @@ app.controller('homeCtrl', ['$scope','$filter',function($scope, $filter) {
 		return weeksIn;
 	}
 	
+	function splitPerksForBold(data){
+		data.w.forEach(function(i){
+			var perkSplit;
+			if(i.Perk1){
+				perkSplit = i.Perk1.split(',');
+				i.Perk1_first = perkSplit[0];
+				if(perkSplit.length > 1){
+					i.Perk1_rest = ',' + perkSplit.slice(1).join(',');
+				}
+			}
+			if(i.Perk2){
+				perkSplit = i.Perk2.split(',');
+				i.Perk2_first = perkSplit[0];
+				if(perkSplit.length > 1){
+					i.Perk2_rest = ',' + perkSplit.slice(1).join(',');
+				}
+			}
+			if(i.Perk3){
+				perkSplit = i.Perk3.split(',');
+				i.Perk3_first = perkSplit[0];
+				if(perkSplit.length > 1){
+					i.Perk3_rest = ',' + perkSplit.slice(1).join(',');
+				}
+			}
+			if(i.Perk4){
+				perkSplit = i.Perk4.split(',');
+				i.Perk4_first = perkSplit[0];
+				if(perkSplit.length > 1){
+					i.Perk4_rest = ',' + perkSplit.slice(1).join(',');
+				}
+			}
+			if(i.Masterwork){
+				perkSplit = i.Masterwork.split(',');
+				i.Masterwork_first = perkSplit[0];
+				if(perkSplit.length > 1){
+					i.Masterwork_rest = ',' + perkSplit.slice(1).join(',');
+				}
+			}
+		});
+		return data;
+	}
+
+	function loadCuration(){
+		var temp = $.getJSON("json/JetsRolls.json", function(data){
+			data = splitPerksForBold(data);
+			ctrl.allCuration = data;
+			ctrl.curation = ctrl.allCuration;
+		});
+		
+	}
+
 	// function loadAPI(){
 		// // Create a request variable and assign a new XMLHttpRequest object to it.
 		// var request = new XMLHttpRequest();
@@ -160,4 +222,26 @@ app.controller('homeCtrl', ['$scope','$filter',function($scope, $filter) {
 		// return false;
 	// }
 	
-}]);
+	/* Curation JSON Template
+	,{"Image":"images/guns/.jpg","Name":"",
+            "Source":"",
+            "Comment":"",
+            "Perk1":"",
+            "Perk2":"",
+            "Perk3":"",
+            "Perk4":"",
+            "Masterwork":""}
+	*/
+}]).filter('filterCurations', function() {
+    return function (items, searchInput) {
+		var results = [];
+		if(items){
+			for (var i = 0; i < items.length; i++) {
+				if((items[i].Name.toLowerCase().includes(searchInput.toLowerCase())) || (items[i].Source.toLowerCase().includes(searchInput.toLowerCase()))){
+					results.push(items[i]);
+				}
+			}
+		}
+        return results;
+    };
+});

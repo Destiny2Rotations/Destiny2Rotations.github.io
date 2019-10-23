@@ -47,7 +47,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr ng-repeat="w in ctrl.curation.w | filterCurations: ctrl.curationQuickSearch">
+							<tr ng-repeat="w in ctrl.curation.w | filterCurations: ctrl.curationQuickSearch | orderBy: 'Source'">
 								<td><img ng-src="{{w.Image}}" style="height: 50px"></td>
 								<td>{{w.Name}}</td>
 								<td>{{w.Source}}</td>
@@ -63,7 +63,7 @@
 					
 					<!-- Mobile Display -->
 					<div class="hidden-md">
-						<div class="well" style="display: flex;flex-direction: column; margin: 10px 0px 10px 0px;" ng-repeat="w in ctrl.curation.w | filterCurations: ctrl.curationQuickSearch">
+						<div class="well" style="display: flex;flex-direction: column; margin: 10px 0px 10px 0px;" ng-repeat="w in ctrl.curation.w | filterCurations: ctrl.curationQuickSearch | orderBy: 'Source'">
 							<div style="display: flex; flex-direction: row">
 								<img ng-src="{{w.Image}}" style="height: 50px;margin-right: 19px;" />
 								<div style="display: flex; flex-direction: column">

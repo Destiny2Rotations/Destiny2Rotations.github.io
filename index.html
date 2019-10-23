@@ -39,8 +39,8 @@
 						</div>
 					</div>
 					
-					<!-- Desktop Grid -->
-					<table class="table table-striped hidden-xs hidden-sm">
+					<!-- OLD Desktop for curated rolls Grid -->
+					<!-- <table class="table table-striped hidden-xs hidden-sm">
 						<thead>
 							<tr>
 							  <th ng-repeat="c in ctrl.curation.columns">{{c}}</th>
@@ -59,42 +59,42 @@
 								<td><span style="font-weight: bold">{{w.Masterwork_first}}</span>{{w.Masterwork_rest}}</td>
 							</tr>
 						</tbody>
-					</table>
-					
-					<!-- Mobile Display -->
-					<div class="hidden-md">
-						<div class="well" style="display: flex;flex-direction: column; margin: 10px 0px 10px 0px;" ng-repeat="w in ctrl.curation.w | filterCurations: ctrl.curationQuickSearch | orderBy: 'Source'">
-							<div style="display: flex; flex-direction: row">
-								<img ng-src="{{w.Image}}" style="height: 50px;margin-right: 19px;" />
-								<div style="display: flex; flex-direction: column">
-									<span><span style="font-size:14px;font-weight: bold">{{w.Name}}</span><span style="font-size:13px;"> ({{w.Source}})</span></span>
-									<span style="font-size:12px;font-style: italic">{{w.Comment}}</span>
-								</div>
-							</div>								
-							<table class="table table-striped" style="margin: 10px 0px 0px 0px">
-								<tbody>
-										<tr>
-											<td style="font-size:14px"><span style="font-weight:bold">Perk 1</span></td>
-											<td style="font-size:14px"><span style="font-weight:bold">{{w.Perk1_first}}</span>{{w.Perk1_rest}}</td>
-										</tr>
-										<tr>
-											<td style="font-size:14px"><span style="font-weight:bold">Perk 2</span></td>
-											<td style="font-size:14px"><span style="font-weight:bold">{{w.Perk2_first}}</span>{{w.Perk2_rest}}</td>
-										</tr>
-										<tr>
-											<td style="font-size:14px"><span style="font-weight:bold">Perk 3</span></td>
-											<td style="font-size:14px"><span style="font-weight:bold">{{w.Perk3_first}}</span>{{w.Perk3_rest}}</td>
-										</tr>
-										<tr>
-											<td style="font-size:14px"><span style="font-weight:bold">Perk 4</span></td>
-											<td style="font-size:14px"><span style="font-weight:bold">{{w.Perk4_first}}</span>{{w.Perk4_rest}}</td>
-										</tr>
-										<tr>
-											<td style="font-size:14px"><span style="font-weight:bold">Masterwork</span></td>
-											<td style="font-size:14px"><span style="font-weight:bold">{{w.Masterwork_first}}</span>{{w.Masterwork_rest}}</td>
-										</tr>
-								</tbody>
-							</table>
+					</table> -->
+					<div class="row" style="display: flex;flex-wrap: wrap;">
+						<div class="well-container col-md-4 col-sm-6 col-xs-12" ng-repeat="w in ctrl.curation.w | filterCurations: ctrl.curationQuickSearch | orderBy: 'Source'">
+							<div class="well" style="display: flex;flex-direction: column; margin: 10px 0px 10px 0px;">
+								<div style="display: flex; flex-direction: row">
+									<img ng-src="{{w.Image}}" style="height: 50px;margin-right: 19px;" />
+									<div style="display: flex; flex-direction: column">
+										<span><span style="font-size:14px;font-weight: bold">{{w.Name}}</span><span style="font-size:13px;"> ({{w.Source}})</span></span>
+										<span style="font-size:12px;font-style: italic">{{w.Comment}}</span>
+									</div>
+								</div>								
+								<table class="table table-striped" style="margin: 10px 0px 0px 0px">
+									<tbody>
+											<tr>
+												<td style="font-size:14px"><span style="font-weight:bold">Perk 1</span></td>
+												<td style="font-size:14px"><span style="font-weight:bold">{{w.Perk1_first}}</span>{{w.Perk1_rest}}</td>
+											</tr>
+											<tr>
+												<td style="font-size:14px"><span style="font-weight:bold">Perk 2</span></td>
+												<td style="font-size:14px"><span style="font-weight:bold">{{w.Perk2_first}}</span>{{w.Perk2_rest}}</td>
+											</tr>
+											<tr>
+												<td style="font-size:14px"><span style="font-weight:bold">Perk 3</span></td>
+												<td style="font-size:14px"><span style="font-weight:bold">{{w.Perk3_first}}</span>{{w.Perk3_rest}}</td>
+											</tr>
+											<tr>
+												<td style="font-size:14px"><span style="font-weight:bold">Perk 4</span></td>
+												<td style="font-size:14px"><span style="font-weight:bold">{{w.Perk4_first}}</span>{{w.Perk4_rest}}</td>
+											</tr>
+											<tr>
+												<td style="font-size:14px"><span style="font-weight:bold">Masterwork</span></td>
+												<td style="font-size:14px"><span style="font-weight:bold">{{w.Masterwork_first}}</span>{{w.Masterwork_rest}}</td>
+											</tr>
+									</tbody>
+								</table>
+							</div>
 						</div>
 					</div>
 					

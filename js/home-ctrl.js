@@ -18,7 +18,7 @@ app.controller('homeCtrl', ['$scope','$filter',function($scope, $filter) {
 		{boss:'Damkath, The Mask',weapon:'IKELOS_SR_v1.0.1', weaponImg:"images/ep/IKELOS_SR_v1.0.1.jpg", bossMechanic: 'The only place on its body that can be damaged is the growth on its back.'},
 		{boss:'Naksud, The Famine',weapon:'ALL WEAPONS', weaponImg:"images/ep/allWeapons.jpg", bossMechanic: 'Has very low health, but when damaged, waves of Cursed Thrall appear and their explosions will heal it.'}];
 		
-	ctrl.ascendantChallengeRotation = [{location:"Chamber of Starlight",url:"cII9tBsNen4",img:"images/ac/0.jpg"},
+	ctrl.ascendantChallengeRotation = [{location:"Chamber of Starlight",url:"l2O9_2Vkgik",img:"images/ac/0.jpg"},
 		{location:"Aphelion's Rest",url:"POLB_0Z7asE",img:"images/ac/1.jpg"},
 		{location:"Garden of Esila",url:"6DmWzQjE3Yw",img:"images/ac/2.jpg"},
 		{location:"Spine of Keres",url:"trzuqFHddoc",img:"images/ac/3.jpg"},

@@ -20,6 +20,49 @@
 			<h6 class="noselect" style="cursor:pointer;" ng-click="ctrl.previewNextWeek()" ng-show="!ctrl.previewing"> <a>preview next week</a></h6>
 			<h6 class="noselect" style="cursor:pointer;" ng-click="ctrl.previewNextWeek()" ng-show="ctrl.previewing"> <a>back to current week</a> </h6>
 		</section>
+		<!-- Full Roll Column -->
+		<div class="col-md-12 col-sm-12">
+			<section id="section_JetsRolls" class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="noselect" style="cursor:pointer;" ng-click="ctrl.collapseJetsRolls()">
+						Jet's Curated Rolls
+						<i ng-show="ctrl.showJetsRolls" class="fa fa-chevron-down pull-right"></i>
+						<i ng-show="!ctrl.showJetsRolls" class="fa fa-chevron-up pull-right"></i>
+					</h3>
+				</div>
+				<div ng-show="ctrl.showJetsRolls" class="panel-body">
+					<div class="col-md-12 col-sm-12">
+						<div class="col-md-4 col-sm-12">
+							<input type="text" class="form-control" placeholder="Quick Search" 
+								ng-model="ctrl.curationQuickSearch"/>
+								<!-- ng-model="ctrl.curationQuickSearch" ng-change="ctrl.filterCuration()" /> -->
+						</div>
+						<span class="pull-right">***Results may vary***</span>
+					</div>
+					
+					<table class="table table-striped">
+						<thead>
+							<tr>
+							  <th ng-repeat="c in ctrl.curation.columns">{{c}}</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="w in ctrl.curation.w | filterCurations: ctrl.curationQuickSearch">
+								<td><img ng-src="{{w.Image}}" style="height: 50px"></td>
+								<td>{{w.Name}}</td>
+								<td>{{w.Source}}</td>
+								<td><span style="font-style:italic">{{w.Comment}}</span></td>
+								<td><span style="font-weight: bold">{{w.Perk1_first}}</span>{{w.Perk1_rest}}</td>
+								<td><span style="font-weight: bold">{{w.Perk2_first}}</span>{{w.Perk2_rest}}</td>
+								<td><span style="font-weight: bold">{{w.Perk3_first}}</span>{{w.Perk3_rest}}</td>
+								<td><span style="font-weight: bold">{{w.Perk4_first}}</span>{{w.Perk4_rest}}</td>
+								<td><span style="font-weight: bold">{{w.Masterwork_first}}</span>{{w.Masterwork_rest}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</section>
+		</div>
 		<!--Column 1-->
 		<div class="col-md-6 col-sm-12">
 			<!--Ascendant Challenge-->

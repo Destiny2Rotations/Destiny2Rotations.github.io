@@ -171,13 +171,24 @@ app.controller('homeCtrl', ['$scope','$filter',function($scope, $filter) {
 	}
 
 	function loadCuration(){
-		var temp = $.getJSON("json/JetsRolls.json", function(data){
-			data = splitPerksForBold(data);
-			ctrl.allCuration = data;
-			ctrl.curation = ctrl.allCuration;
-		});
-		
+		let req = new XMLHttpRequest();
+
+		req.onreadystatechange = () => {
+			if (req.readyState == XMLHttpRequest.DONE) {
+				ctrl.curation = JSON.parse(req.responseText);
+				ctrl.curation = splitPerksForBold(ctrl.curation)
+			}
+		};
+
+		req.open("GET", "https://api.jsonbin.io/b/5dafd32d3776732d2efcd354/latest", true);
+		req.send();
 	}
+
+	//Old Code 
+	// var temp = $.getJSON("json/JetsRolls.json", function(data){
+		// 	data = splitPerksForBold(data);
+		// 	ctrl.curation = data;
+		// });
 
 	// function loadAPI(){
 		// // Create a request variable and assign a new XMLHttpRequest object to it.

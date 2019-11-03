@@ -9,9 +9,15 @@ app.controller('homeCtrl', ['$scope','$filter',function($scope, $filter) {
 	ctrl.showJetsRolls = false;
 	ctrl.showCurseWeek = true;
 	ctrl.showWhisper = true;
+	ctrl.showAlterOfSorrows = true;
 	ctrl.curseStrength = "";
 	ctrl.curationQuickSearch = "";
 	
+	ctrl.alterOfSorrowsRotation = [{gunName:'Blasphemer', imageUrl:'https://bungie.net/common/destiny2_content/icons/2f61559b7c57894703b6aaa52a44630c.jpg'},
+		{gunName:'Apostate', imageUrl:'https://bungie.net/common/destiny2_content/icons/b990412136d220fd641078418a4903fe.jpg'},
+		{gunName:'Heretic', imageUrl:'https://bungie.net/common/destiny2_content/icons/eaf113dbb5cea03526009e6030b8c8ee.jpg'}
+	];
+
 	ctrl.epRotation = [{boss:'Bok Litur, Hunger of Xol',weapon:'ALL WEAPONS', weaponImg:"images/ep/allWeapons.jpg", bossMechanic: 'Very high HP, extra orbs of light dropped by "Battery Acolytes".'},
 		{boss:'Nur Abath, Crest of Xol',weapon:'IKELOS_SG_v1.0.1', weaponImg:"images/ep/IKELOS_SG_v1.0.1.jpg", bossMechanic: 'While other Hive are near it, it becomes immune to damage.'},
 		{boss:'Kathok, Roar of Xol',weapon:'IKELOS_SMG_v1.0.1', weaponImg:"images/ep/IKELOS_SMG_v1.0.1.jpg", bossMechanic: 'Has an immunity shield that can only be broken by the relic swords dropped by other Knights.'},
@@ -26,6 +32,7 @@ app.controller('homeCtrl', ['$scope','$filter',function($scope, $filter) {
 		{location:"Bay of Drowned Wishes",url:"QFScdhlrKJ0",img:"images/ac/5.jpg"}];
 	
 	var numberOfResets = calculateHowManyWeeks();
+	calculateWhatDay();
 	setWeek();
 	loadCuration();
 	//loadAPI();
@@ -45,6 +52,9 @@ app.controller('homeCtrl', ['$scope','$filter',function($scope, $filter) {
 	}
 	ctrl.collapseJetsRolls = function(){
 		ctrl.showJetsRolls = !ctrl.showJetsRolls;
+	}
+	ctrl.collapseAlterOfSorrows = function(){
+		ctrl.showAlterOfSorrows = !ctrl.showAlterOfSorrows;
 	}
 	
 	ctrl.previewNextWeek = function(){
@@ -82,7 +92,7 @@ app.controller('homeCtrl', ['$scope','$filter',function($scope, $filter) {
 		switch (threeWeekRotators){
 			case 0:
 				ctrl.curseStrengthStyle = {color: 'Goldenrod'};
-				ctrl.curseStrength = "Medium"
+				ctrl.curseStrength = "Medium";
 				ascendantChestPlayer.src = 'https://www.youtube.com/embed/7WvxeOnhClY';
 				ctrl.whisperStyle = {color: 'Fuchsia'};
 				ctrl.whisperElement = "void"
@@ -106,6 +116,25 @@ app.controller('homeCtrl', ['$scope','$filter',function($scope, $filter) {
 		ascendantChestPlayer.height = ascendantChestPlayer.parentElement.scrollWidth / 1.8;
 	}
 	
+	function calculateWhatDay() {
+		var today = new Date();
+		var constReset = new Date('2019-01-01');
+		constReset.setUTCHours(17, 0, 0, 0);
+		var Difference_In_Time = today.getTime() - constReset.getTime();
+		var Difference_In_Days = Math.floor(Difference_In_Time / (1000 * 3600 * 24));
+		switch(Difference_In_Days % 3){
+			case 0:
+				ctrl.alterOfSorrowsCurrentRotation = ctrl.alterOfSorrowsRotation[2];
+				break;
+			case 1:
+				ctrl.alterOfSorrowsCurrentRotation = ctrl.alterOfSorrowsRotation[0];
+				break;
+			case 2:
+				ctrl.alterOfSorrowsCurrentRotation = ctrl.alterOfSorrowsRotation[1];
+				break;
+		}
+	}
+
 	function calculateHowManyWeeks () {
 		var today = new Date();
 		var firstReset = new Date('2019-01-01');

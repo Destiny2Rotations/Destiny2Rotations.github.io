@@ -123,23 +123,37 @@
 		</div>
 		<!--Column 2-->
 		<div class="col-md-6 col-sm-12">
-			<!--Escalation Protocol-->
-			<section id="section_escalationProtocol" class="panel panel-default">
+			<!--Alter of Sorrows-->
+			<section id="section_alterOfSorrows" class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="noselect visible-md-*" style="cursor:pointer;" ng-click="ctrl.collapseEP()">
-						Escalation Protocol
-						<i ng-show="ctrl.showEP" class="fa fa-chevron-down pull-right"></i>
-						<i ng-show="!ctrl.showEP" class="fa fa-chevron-up pull-right"></i>
+					<h3 class="noselect visible-md-*" style="cursor:pointer;" ng-click="ctrl.collapseAlterOfSorrows()">
+						Alter of Sorrows
+						<i ng-show="ctrl.showAlterOfSorrows" class="fa fa-chevron-down pull-right"></i>
+						<i ng-show="!ctrl.showAlterOfSorrows" class="fa fa-chevron-up pull-right"></i>
 					</h3>
 				</div>
-				<div ng-show="ctrl.showEP" class="panel-body">
-					<h4>{{ctrl.epCurrentRotation.boss}}</h3>
-					<h5>{{ctrl.epCurrentRotation.bossMechanic}}</h5>
-					<img ng-src="{{ctrl.epCurrentRotation.weaponImg}}"></img>
-					<h4>Drop: {{ctrl.epCurrentRotation.weapon}}</h3><br />
-					<span class="pull-right" style="font-size:8pt">credit to <a href="https://www.reddit.com/r/DestinyTheGame/comments/992zbd/escalation_protocol_guide_all_the_info_in_one/">u/sstoneb</a></span>
+				<div ng-show="ctrl.showAlterOfSorrows" class="panel-body">
+					<img ng-src="{{ctrl.alterOfSorrowsCurrentRotation.imageUrl}}"></img>
+					<h4>Drop: {{ctrl.alterOfSorrowsCurrentRotation.gunName}}</h3><br />
 				</div>
 			</section>
+			<!--Escalation Protocol-->
+			<section id="section_escalationProtocol" class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="noselect visible-md-*" style="cursor:pointer;" ng-click="ctrl.collapseEP()">
+							Escalation Protocol
+							<i ng-show="ctrl.showEP" class="fa fa-chevron-down pull-right"></i>
+							<i ng-show="!ctrl.showEP" class="fa fa-chevron-up pull-right"></i>
+						</h3>
+					</div>
+					<div ng-show="ctrl.showEP" class="panel-body">
+						<h4>{{ctrl.epCurrentRotation.boss}}</h3>
+						<h5>{{ctrl.epCurrentRotation.bossMechanic}}</h5>
+						<img ng-src="{{ctrl.epCurrentRotation.weaponImg}}"></img>
+						<h4>Drop: {{ctrl.epCurrentRotation.weapon}}</h3><br />
+						<span class="pull-right" style="font-size:8pt">credit to <a href="https://www.reddit.com/r/DestinyTheGame/comments/992zbd/escalation_protocol_guide_all_the_info_in_one/">u/sstoneb</a></span>
+					</div>
+				</section>
 			<!--Curse Week-->
 			<section id="section_curseWeek" class="panel panel-default">
 				<div class="panel-heading">

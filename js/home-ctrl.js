@@ -12,6 +12,7 @@ app.controller('homeCtrl', ['$scope','$filter',function($scope, $filter) {
 	ctrl.showAlterOfSorrows = true;
 	ctrl.curseStrength = "";
 	ctrl.curationQuickSearch = "";
+	ctrl.ShowUnobtainableCurations = false;
 	
 	ctrl.alterOfSorrowsRotation = [{gunName:'Blasphemer', imageUrl:'https://bungie.net/common/destiny2_content/icons/2f61559b7c57894703b6aaa52a44630c.jpg'},
 		{gunName:'Apostate', imageUrl:'https://bungie.net/common/destiny2_content/icons/b990412136d220fd641078418a4903fe.jpg'},
@@ -71,9 +72,9 @@ app.controller('homeCtrl', ['$scope','$filter',function($scope, $filter) {
 		}
 	}
 
-	ctrl.filterCuration = function(){
-		alert(ctrl.curationQuickSearch);
-	}
+	// ctrl.filterCuration = function(){
+	// 	alert(ctrl.curationQuickSearch);
+	// }
 	
 	function setWeek(){
 		var epRemainder = numberOfResets % 5;
@@ -277,8 +278,10 @@ app.controller('homeCtrl', ['$scope','$filter',function($scope, $filter) {
 		var results = [];
 		if(items){
 			for (var i = 0; i < items.length; i++) {
-				if((items[i].Name.toLowerCase().includes(searchInput.toLowerCase())) || (items[i].Source.toLowerCase().includes(searchInput.toLowerCase()))){
-					results.push(items[i]);
+				if((items[i].Name.toLowerCase().includes(searchInput.text.toLowerCase())) || (items[i].Source.toLowerCase().includes(searchInput.text.toLowerCase()))){
+					if(items[i].IsObtainable || searchInput.showUnobtainable){
+						results.push(items[i]);
+					}
 				}
 			}
 		}

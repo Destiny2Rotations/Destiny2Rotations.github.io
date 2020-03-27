@@ -35,7 +35,9 @@
 						<div class="col-md-4 col-sm-12">
 							<input type="text" class="form-control" placeholder="Quick Search (Name, Source)" 
 								ng-model="ctrl.curationQuickSearch"/>
-								<!-- ng-model="ctrl.curationQuickSearch" ng-change="ctrl.filterCuration()" /> -->
+						</div>
+						<div class="col-md-4 col-sm-12" style="padding-top: 6px;">
+							<label class="checkbox-inline"><input style="transform:scale(1.2)" type="checkbox" ng-model="ctrl.ShowUnobtainableCurations">Show Unobtainable Weapons</label>
 						</div>
 					</div>
 					
@@ -61,7 +63,7 @@
 						</tbody>
 					</table> -->
 					<div class="row" style="display: flex;flex-wrap: wrap;">
-						<div class="well-container col-md-4 col-sm-6 col-xs-12" ng-repeat="w in ctrl.curation.w | filterCurations: ctrl.curationQuickSearch | orderBy: 'Source'">
+						<div class="well-container col-md-4 col-sm-6 col-xs-12" ng-repeat="w in ctrl.curation.w | filterCurations: {text: ctrl.curationQuickSearch, showUnobtainable: ctrl.ShowUnobtainableCurations} | orderBy: 'Source'">
 							<div class="well" style="display: flex;flex-direction: column; margin: 10px 0px 10px 0px;">
 								<div style="display: flex; flex-direction: row">
 									<img ng-src="{{w.Image}}" style="height: 50px;margin-right: 19px;" />

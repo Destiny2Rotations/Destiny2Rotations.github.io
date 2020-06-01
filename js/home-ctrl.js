@@ -201,17 +201,10 @@ app.controller('homeCtrl', ['$scope','$filter',function($scope, $filter) {
 	}
 
 	function loadCuration(){
-		let req = new XMLHttpRequest();
-
-		req.onreadystatechange = () => {
-			if (req.readyState == XMLHttpRequest.DONE) {
-				ctrl.curation = JSON.parse(req.responseText);
-				ctrl.curation = splitPerksForBold(ctrl.curation)
-			}
-		};
-
-		req.open("GET", "https://api.jsonbin.io/b/5dafd32d3776732d2efcd354/latest", true);
-		req.send();
+		$.getJSON("./json/JetsRolls.json", function(json) {
+			ctrl.curation = json;
+			ctrl.curation = splitPerksForBold(ctrl.curation)
+		});
 	}
 
 	//Old Code 

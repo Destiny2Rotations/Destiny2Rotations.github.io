@@ -1,4 +1,6 @@
-var app = angular.module('homeApp', []);
+var app = angular.module('homeApp', []).config(function($sceProvider) {
+	$sceProvider.enabled(false);
+});
 //this is the main controller
 app.controller('homeCtrl', ['$scope','$filter',function($scope, $filter) {
     var ctrl = $scope.ctrl = {};
@@ -208,6 +210,15 @@ app.controller('homeCtrl', ['$scope','$filter',function($scope, $filter) {
 		});
 	}
 
+	ctrl.getComment = function(comment){
+		var text = comment
+		text = text.replace('Solar', '<span style="color:orangered;font-weight: bold;">Solar</span>')
+		text = text.replace('Arc', '<span style="color:aqua;font-weight: bold;">Arc</span>')
+		text = text.replace('Void', '<span style="color:fuchsia;font-weight: bold;">Void</span>')
+		text = text.replace('Kinetic', '<span style="color: WhiteSmoke;font-weight: bold;">Kinetic</span>')
+		return text
+	}
+
 	//Old Code 
 	// var temp = $.getJSON("json/JetsRolls.json", function(data){
 		// 	data = splitPerksForBold(data);
@@ -272,7 +283,9 @@ app.controller('homeCtrl', ['$scope','$filter',function($scope, $filter) {
 		var results = [];
 		if(items){
 			for (var i = 0; i < items.length; i++) {
-				if((items[i].Name.toLowerCase().includes(searchInput.text.toLowerCase())) || (items[i].Source.toLowerCase().includes(searchInput.text.toLowerCase()))){
+				if((items[i].Name.toLowerCase().includes(searchInput.text.toLowerCase())) 
+						|| (items[i].Source.toLowerCase().includes(searchInput.text.toLowerCase()))
+						|| (items[i].Comment.toLowerCase().includes(searchInput.text.toLowerCase()))){
 					if((items[i].IsObtainable || searchInput.showUnobtainable) && (!items[i].IsSunset || searchInput.showSunset)){
 						results.push(items[i]);
 					}

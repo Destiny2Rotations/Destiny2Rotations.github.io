@@ -70,7 +70,7 @@
 									<img ng-src="{{w.Image}}" style="height: 50px;margin-right: 19px;" />
 									<div style="display: flex; flex-direction: column">
 										<span><span style="font-size:14px;font-weight: bold">{{w.Name}}</span><span style="font-size:13px;"> ({{w.Source}})</span></span>
-										<span style="font-size:12px;font-style: italic">{{w.Comment}}</span>
+										<span style="font-size:12px;font-style: italic" ng-bind-html="ctrl.getComment(w.Comment)"></span>
 									</div>
 								</div>								
 								<table class="table table-striped" style="margin: 10px 0px 0px 0px">

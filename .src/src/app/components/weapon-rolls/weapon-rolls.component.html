@@ -1,0 +1,84 @@
+<mat-expansion-panel>
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+            Jet's Curated Rolls
+        </mat-panel-title>
+    </mat-expansion-panel-header>
+    
+    <mat-form-field class="col-md-4 col-sm-6 col-xs-12">
+        <mat-label>Quick Search (Name, Source)</mat-label>
+        <input matInput type="text" [(ngModel)]="quickSearchValue">
+        <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="quickSearchValue = ''">
+          <mat-icon>close</mat-icon>
+        </button>
+    </mat-form-field>
+    <div class="panel__body">
+        <div *ngFor="let roll of weaponRolls | weaponFilter:{search: quickSearchValue}">
+            <mat-card>
+                <mat-card-header class="card__header">
+                  <div mat-card-avatar [style.background-image]="'url(' + roll.img_url + ')'" class="card__header__img"></div>
+                  <mat-card-title>{{roll.name}}</mat-card-title>
+                  <mat-card-subtitle class="card__header__subtitle">{{roll.archetype.name}} <span [style.color]="roll.element.color"><b>{{roll.element.name}}</b></span> {{roll.weapon_type.name}}</mat-card-subtitle>
+                  <mat-card-subtitle class="card__header__subtitle">Source: {{roll.drop_source.name}}</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    <table class="table table-striped" style="margin: 10px 0px 0px 0px">
+                        <tbody>
+                                <tr>
+                                    <td style="font-size:14px;width: 75px;"><span style="font-weight:bold">Perk 1</span></td>
+                                    <td style="font-size:14px">
+                                        <span *ngFor="let perk of roll.perk_1;index as i;">
+                                            <span *ngIf="i == 0" style="font-weight: bold;">{{perk.name}}</span>
+                                            <span *ngIf="i != 0">{{perk.name}}</span>
+                                            <span *ngIf="i != (roll.perk_1.length-1)">, </span>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-size:14px;width: 75px;"><span style="font-weight:bold">Perk 2</span></td>
+                                    <td style="font-size:14px">
+                                        <span *ngFor="let perk of roll.perk_2;index as i;">
+                                            <span *ngIf="i == 0" style="font-weight: bold;">{{perk.name}}</span>
+                                            <span *ngIf="i != 0">{{perk.name}}</span>
+                                            <span *ngIf="i != (roll.perk_2.length-1)">, </span>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-size:14px;width: 75px;"><span style="font-weight:bold">Perk 3</span></td>
+                                    <td style="font-size:14px">
+                                        <span *ngFor="let perk of roll.perk_3;index as i;">
+                                            <span *ngIf="i == 0" style="font-weight: bold;">{{perk.name}}</span>
+                                            <span *ngIf="i != 0">{{perk.name}}</span>
+                                            <span *ngIf="i != (roll.perk_3.length-1)">, </span>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-size:14px;width: 75px;"><span style="font-weight:bold">Perk 4</span></td>
+                                    <td style="font-size:14px">
+                                        <span *ngFor="let perk of roll.perk_4;index as i;">
+                                            <span *ngIf="i == 0" style="font-weight: bold;">{{perk.name}}</span>
+                                            <span *ngIf="i != 0">{{perk.name}}</span>
+                                            <span *ngIf="i != (roll.perk_4.length-1)">, </span>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-size:14px;width: 75px;"><span style="font-weight:bold">Masterwork</span></td>
+                                    <td style="font-size:14px">
+                                        <span *ngFor="let perk of roll.masterwork;index as i;">
+                                            <span *ngIf="i == 0" style="font-weight: bold;">{{perk.name}}</span>
+                                            <span *ngIf="i != 0">{{perk.name}}</span>
+                                            <span *ngIf="i != (roll.masterwork.length-1)">, </span>
+                                        </span>
+                                    </td>
+                                </tr>
+                                
+                        </tbody>
+                    </table>
+                </mat-card-content>
+              </mat-card>
+        </div>
+    </div>
+</mat-expansion-panel>

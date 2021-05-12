@@ -1,0 +1,13 @@
+<mat-expansion-panel expanded="True">
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+            Ascendant Challenge
+        </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    
+    <p><b>{{challenges[weeklyIndex].name}}</b></p>
+    <img width="100%" src="{{cmsUrl}}{{challenges[weeklyIndex].map.url}}"> <br /><br />
+    <iframe [src]="challenges[weeklyIndex].url | safe" width="100%" height="360" frameborder="0" allowfullscreen></iframe>
+</mat-expansion-panel>
+

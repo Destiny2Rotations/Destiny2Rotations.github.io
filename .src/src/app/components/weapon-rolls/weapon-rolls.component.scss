@@ -1,0 +1,39 @@
+@import '../../../styles.scss';
+
+.panel {
+    &__body {
+        display: grid;
+        @media (min-width: $min-width-phone) {
+            grid-template-columns: repeat(1, 100%);            
+        }
+        @media (min-width: $min-width-tablet) {
+            grid-template-columns: repeat(2, calc(50% - 1em));
+        }
+        @media (min-width: $min-width-desktop) {
+            grid-template-columns: repeat(3, calc(33% - 1em));
+        }
+        
+        column-gap:2em;
+        row-gap: 2em;
+    }
+}
+
+.card {
+    padding-right: 0px;
+    padding-left: 0px;
+    &__header{
+        display: flex;
+        align-items: center;
+        margin-bottom: 1em;
+
+        &__img{
+            background-size: cover;
+            border-radius: 25%;
+            height: 50px;
+            width: 50px;
+        }
+        &__subtitle{
+            font-weight: 500;
+        }
+    }
+}

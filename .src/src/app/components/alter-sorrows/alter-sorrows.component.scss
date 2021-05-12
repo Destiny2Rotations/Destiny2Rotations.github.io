@@ -1,0 +1,19 @@
+.card {
+    padding-right: 0px;
+    padding-left: 0px;
+    &__header{
+        display: flex;
+        align-items: center;
+        margin-bottom: 1em;
+
+        &__img{
+            background-size: cover;
+            border-radius: 25%;
+            height: 50px;
+            width: 50px;
+        }
+        &__subtitle{
+            font-weight: 500;
+        }
+    }
+}

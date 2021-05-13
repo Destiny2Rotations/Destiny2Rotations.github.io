@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
@@ -12,6 +12,12 @@ import { WeaponRoll } from "../models/weapon-roll.model";
 })
 export class CMSService {
     constructor(private http: HttpClient) { }
+
+    getHeaders(): HttpHeaders{
+        let headers = new HttpHeaders()
+        headers.set('Access-Control-Allow-Origin',environment.cmsUrl)
+        return headers
+    }
 
     get_weaponRolls(): Observable<WeaponRoll[]> {
         return this.http.get(environment.cmsUrl + '/weapons-rolls').pipe(

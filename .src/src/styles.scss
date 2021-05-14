@@ -15,79 +15,26 @@ $min-width-desktop: 1260px;
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$d2-curation-primary: (
-  50 : #e0e8ef,
-  100 : #b3c6d7,
-  200 : #80a0bd,
-  300 : #4d79a2,
-  400 : #265d8e,
-  500 : #00407a,
-  600 : #003a72,
-  700 : #003267,
-  800 : #002a5d,
-  900 : #001c4a,
-  A100 : #7ea1ff,
-  A200 : #4b7cff,
-  A400 : #1858ff,
-  A700 : #0046fd,
-  contrast: (
-      50 : #000000,
-      100 : #000000,
-      200 : #000000,
-      300 : #ffffff,
-      400 : #ffffff,
-      500 : #ffffff,
-      600 : #ffffff,
-      700 : #ffffff,
-      800 : #ffffff,
-      900 : #ffffff,
-      A100 : #000000,
-      A200 : #ffffff,
-      A400 : #ffffff,
-      A700 : #ffffff,
-  )
-);
-$d2-curation-accent: (
-  50 : #e5f4f3,
-  100 : #bee4e1,
-  200 : #93d3cd,
-  300 : #67c1b8,
-  400 : #47b3a9,
-  500 : #26a69a,
-  600 : #229e92,
-  700 : #1c9588,
-  800 : #178b7e,
-  900 : #0d7b6c,
-  A100 : #adfff3,
-  A200 : #7affec,
-  A400 : #47ffe4,
-  A700 : #2dffe0,
-  contrast: (
-      50 : #000000,
-      100 : #000000,
-      200 : #000000,
-      300 : #000000,
-      400 : #000000,
-      500 : #ffffff,
-      600 : #ffffff,
-      700 : #ffffff,
-      800 : #ffffff,
-      900 : #ffffff,
-      A100 : #000000,
-      A200 : #000000,
-      A400 : #000000,
-      A700 : #000000,
-  )
-);
+$candy-app-primary: mat-palette($mat-indigo);
+$candy-app-accent:  mat-palette($mat-pink, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$candy-app-warn:    mat-palette($mat-red);
 
 // Create the theme object. A theme consists of configurations for individual
-// theming systems such as "color" or "typography".
-$d2-curation-theme: mat-light-theme($d2-curation-primary,$d2-curation-accent);
+// theming systems such as `color` or `typography`.
+$candy-app-theme: mat-light-theme((
+  color: (
+    primary: $candy-app-primary,
+    accent: $candy-app-accent,
+    warn: $candy-app-warn,  
+  )
+));
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
-@include angular-material-theme($d2-curation-theme);
+@include angular-material-theme($candy-app-theme);
 
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/scss/bootstrap";

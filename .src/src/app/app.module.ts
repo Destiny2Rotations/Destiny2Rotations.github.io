@@ -22,6 +22,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 import { WeaponRollsComponent } from './components/weapon-rolls/weapon-rolls.component';
 import { WeaponFilterPipe } from './pipes/weapon-filter.pipe';
@@ -60,7 +61,8 @@ import { SafePipe } from './pipes/safe.pipe';
     MatInputModule,
     MatIconModule,
     MatButtonModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]

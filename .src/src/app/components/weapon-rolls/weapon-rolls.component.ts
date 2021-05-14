@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
+import { CurrentSeason } from 'src/app/models/current-season.model';
 import { WeaponRoll } from 'src/app/models/weapon-roll.model';
 import * as FromApp from 'src/app/store/app.reducer'
 import * as CommonActions from 'src/app/store/common/common.actions'
@@ -15,6 +16,9 @@ export class WeaponRollsComponent implements OnInit,OnDestroy {
   allWeaponRolls: WeaponRoll[] = []
   weaponRolls: WeaponRoll[] = []
   quickSearchValue: string = ''
+  showCurrentSeason: boolean = false
+  showUnobtainable: boolean = false
+  currentSeason?: CurrentSeason
 
   constructor(private store: Store<FromApp.AppState>) { }
 
@@ -23,20 +27,13 @@ export class WeaponRollsComponent implements OnInit,OnDestroy {
     this.store.dispatch(CommonActions.Get_Rolls())
     this.subscriptions.push(this.store.select('common','weaponRolls').subscribe(rolls => {
       this.allWeaponRolls = rolls
-      this.onQuickSearch()
+      this.weaponRolls = [...this.allWeaponRolls]
+    }))
+    this.subscriptions.push(this.store.select('common','currentSeason').subscribe(season => {
+      this.currentSeason = season
     }))
   }
 
-  onQuickSearch(): void {
-    this.weaponRolls = this.allWeaponRolls.filter(roll => {
-      if(roll.drop_source.name.toLowerCase().includes(this.quickSearchValue.toLowerCase())
-          || roll.name.toLowerCase().includes(this.quickSearchValue.toLowerCase())) {
-            return true
-      }
-      return false
-    })
-
-  }
 
   ngOnDestroy():void {
     this.subscriptions.forEach(sub => sub.unsubscribe())

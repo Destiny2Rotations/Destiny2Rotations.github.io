@@ -5,6 +5,7 @@ import { state } from '@angular/animations';
 import { WeaponRoll } from 'src/app/models/weapon-roll.model';
 import { AscendantChallenge } from 'src/app/models/ascendant-challenge.model';
 import { AlterOfSorrow } from 'src/app/models/altar-of-sorrow.model';
+import { CurrentSeason } from 'src/app/models/current-season.model';
 
 function calculateHowManyWeeks () {
     var today = new Date();
@@ -41,6 +42,7 @@ export interface State {
     weeklyResets?: number;
     dailyResets?: number;
     AltersOfSorrow: AlterOfSorrow[];
+    currentSeason?: CurrentSeason;
 }
 
 const intialState: State = {
@@ -48,7 +50,8 @@ const intialState: State = {
     ascendantChallenges: [],
     weeklyResets: undefined,
     dailyResets: undefined,
-    AltersOfSorrow: []
+    AltersOfSorrow: [],
+    currentSeason: undefined
 }
 
 const commonReducer = createReducer(
@@ -73,6 +76,12 @@ const commonReducer = createReducer(
             weeklyResets: state.weeklyResets ? state.weeklyResets : calculateHowManyWeeks(),
             dailyResets: state.dailyResets ? state.dailyResets : calculateWhatDay(),
             AltersOfSorrow: alters
+         }
+    }),
+    on(CommonActions.Get_CurrentSeason_Success, (state, { season }) => {
+        return { 
+            ...state,
+            currentSeason: season
          }
     })
 )

@@ -24,7 +24,9 @@ export class CommonEffects {
         () => this.actions$.pipe(
           ofType(CommonActions.GET_ROLLS),
           mergeMap(() => this.cmsService.get_weaponRolls().pipe(
-              map(resp => ({ type: CommonActions.GET_ROLLS_SUCCESS, rolls: resp }))
+              map(resp => { 
+                  return { type: CommonActions.GET_ROLLS_SUCCESS, rolls: resp }
+            })
           ))
         )
     )
@@ -43,6 +45,15 @@ export class CommonEffects {
           ofType(CommonActions.GET_ALTERS),
           mergeMap(() => this.cmsService.get_alterOfSorrows().pipe(
               map(resp => ({ type: CommonActions.GET_ALTERS_SUCCESS, alters: resp }))
+          ))
+        )
+    )
+
+    get_currentSeason$ = createEffect(
+        () => this.actions$.pipe(
+          ofType(CommonActions.GET_ROLLS),
+          mergeMap(() => this.cmsService.get_currentSeason().pipe(
+              map(resp => ({ type: CommonActions.GET_CURRENTSEASON_SUCCESS, season: resp }))
           ))
         )
     )

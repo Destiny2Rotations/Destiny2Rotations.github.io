@@ -5,6 +5,7 @@ import { map } from "rxjs/operators";
 import { environment } from "src/environments/environment";
 import { AlterOfSorrow } from "../models/altar-of-sorrow.model";
 import { AscendantChallenge } from "../models/ascendant-challenge.model";
+import { CurrentSeason } from "../models/current-season.model";
 import { WeaponRoll } from "../models/weapon-roll.model";
 
 @Injectable({
@@ -20,7 +21,7 @@ export class CMSService {
     }
 
     get_weaponRolls(): Observable<WeaponRoll[]> {
-        return this.http.get(environment.cmsUrl + '/weapons-rolls').pipe(
+        return this.http.get(environment.cmsUrl + '/weapons-rolls?_limit=-1').pipe(
             map(resp => {
                 return <WeaponRoll[]>resp
             })
@@ -39,6 +40,14 @@ export class CMSService {
         return this.http.get(environment.cmsUrl + '/altar-of-sorrows').pipe(
             map(resp => {
                 return <AlterOfSorrow[]>resp
+            })
+        );
+    }
+
+    get_currentSeason(): Observable<CurrentSeason> { 
+        return this.http.get(environment.cmsUrl + '/current-season').pipe(
+            map(resp => {
+                return <CurrentSeason>resp
             })
         );
     }

@@ -20,6 +20,7 @@ export class WeaponRoll {
         public perk_4: Perk[],
         public weapon_type: WeaponType,
         public masterwork: WeaponAttribute[],
-        public drop_source: DropSource
+        public drop_source: DropSource,
+        public season: number
     ) {}
 }

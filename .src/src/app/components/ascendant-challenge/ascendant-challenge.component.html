@@ -1,4 +1,4 @@
-<mat-expansion-panel expanded="True">
+<mat-expansion-panel expanded="True" style="margin-bottom: 1em;">
     <mat-expansion-panel-header>
         <mat-panel-title>
             Ascendant Challenge
@@ -6,8 +6,8 @@
     </mat-expansion-panel-header>
 
     
-    <p><b>{{challenges[weeklyIndex].name}}</b></p>
-    <img width="100%" src="{{cmsUrl}}{{challenges[weeklyIndex].map.url}}"> <br /><br />
-    <iframe [src]="challenges[weeklyIndex].url | safe" width="100%" height="360" frameborder="0" allowfullscreen></iframe>
+    <p><b>{{challenge?.name}}</b></p>
+    <img width="100%" src="{{cmsUrl}}{{img_url}}"> <br /><br />
+    <iframe [src]="(vid_url | safe)" width="100%" height="360" frameborder="0" allowfullscreen></iframe>
 </mat-expansion-panel>
 

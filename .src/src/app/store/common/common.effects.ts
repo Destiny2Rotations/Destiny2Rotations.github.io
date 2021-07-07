@@ -57,4 +57,13 @@ export class CommonEffects {
           ))
         )
     )
+
+    get_currentNightfallWeapon$ = createEffect(
+        () => this.actions$.pipe(
+          ofType(CommonActions.GET_ROLLS),
+          mergeMap(() => this.cmsService.get_nightfallWeapons().pipe(
+              map(resp => ({ type: CommonActions.GET_NIGHTFALLWEAPONS_SUCCESS, weapons: resp }))
+          ))
+        )
+    )
 }

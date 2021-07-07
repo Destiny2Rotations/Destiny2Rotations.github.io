@@ -16,20 +16,18 @@ export class AscendantChallengeComponent implements OnInit,OnDestroy {
   constructor(private store: Store<FromApp.AppState>) { }
 
   cmsUrl: string = environment.cmsUrl
-  challenges: AscendantChallenge[] = []
-  weeklyIndex: number = 0
+  challenge?: AscendantChallenge
+  img_url: string = ''
+  vid_url: string = ''
 
   subscriptions: Subscription[] = []
   ngOnInit(): void {
-    this.subscriptions.push(this.store.select('common','ascendantChallenges').subscribe(ac => {
-      if(!ac) {
-        this.store.dispatch(CommonActions.Get_AC())
+    this.subscriptions.push(this.store.select('common','currentAscendantChallenge').subscribe(ac => {
+      this.challenge = ac
+      if(this.challenge) {
+        this.img_url = this.challenge.map.url
+        this.vid_url = this.challenge.url
       }
-      this.challenges = ac
-    }))
-    this.subscriptions.push(this.store.select('common','weeklyResets').subscribe(index => {
-      if(index)
-        this.weeklyIndex = index % 6
     }))
   }
 

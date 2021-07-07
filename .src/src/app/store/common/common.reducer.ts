@@ -39,19 +39,23 @@ function calculateWhatDay() {
 export interface State {
     weaponRolls: WeaponRoll[];
     ascendantChallenges: AscendantChallenge[];
+    currentAscendantChallenge?: AscendantChallenge;
     weeklyResets?: number;
     dailyResets?: number;
     AltersOfSorrow: AlterOfSorrow[];
     currentSeason?: CurrentSeason;
+    currentNightfallWeapon?: WeaponRoll[];
 }
 
 const intialState: State = {
     weaponRolls: [],
     ascendantChallenges: [],
+    currentAscendantChallenge: undefined,
     weeklyResets: undefined,
     dailyResets: undefined,
     AltersOfSorrow: [],
-    currentSeason: undefined
+    currentSeason: undefined,
+    currentNightfallWeapon: undefined
 }
 
 const commonReducer = createReducer(
@@ -63,11 +67,10 @@ const commonReducer = createReducer(
          }
     }),
     on(CommonActions.Get_AC_Success, (state, { acs }) => {
+        let allACs = [...acs]
         return { 
             ...state,
-            weeklyResets: state.weeklyResets ? state.weeklyResets : calculateHowManyWeeks(),
-            dailyResets: state.dailyResets ? state.dailyResets : calculateWhatDay(),
-            ascendantChallenges: acs
+            currentAscendantChallenge: allACs[calculateHowManyWeeks()  % 6]
          }
     }),
     on(CommonActions.Get_Alters_Success, (state, { alters }) => {
@@ -83,6 +86,16 @@ const commonReducer = createReducer(
             ...state,
             currentSeason: season
          }
+    }),
+    on(CommonActions.Get_NightfallWeapons_Success, (state, { weapons }) => {
+        let maxOrder = Math.max.apply(Math, weapons.map(function(o) { return o.order }))
+        let orderRotation = calculateHowManyWeeks() % maxOrder        
+        let weaponArray = [...weapons]
+        weaponArray = weaponArray.filter((a) => a.order == (orderRotation + 1))
+        return {
+            ...state,
+            currentNightfallWeapon: weaponArray.map(k => k.weapons_roll)
+        }
     })
 )
 

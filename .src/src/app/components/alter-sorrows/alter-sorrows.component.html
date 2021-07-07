@@ -1,4 +1,4 @@
-<mat-expansion-panel>
+<mat-expansion-panel expanded="True">
     <mat-expansion-panel-header>
         <mat-panel-title>
             Altar of Sorrows
@@ -6,70 +6,70 @@
     </mat-expansion-panel-header>
 
     <mat-card>
-                <mat-card-header class="card__header">
-                  <div mat-card-avatar [style.background-image]="'url(' + dailyWeapon.img_url + ')'" class="card__header__img"></div>
-                  <mat-card-title>{{dailyWeapon.name}}</mat-card-title>
-                  <mat-card-subtitle class="card__header__subtitle">{{dailyWeapon.archetype.name}} <span [style.color]="dailyWeapon.element.color"><b>{{dailyWeapon.element.name}}</b></span> {{dailyWeapon.weapon_type.name}}</mat-card-subtitle>
-                  <mat-card-subtitle class="card__header__subtitle">Source: {{dailyWeapon.drop_source.name}}</mat-card-subtitle>
-                </mat-card-header>
-                <mat-card-content>
-                    <table class="table table-striped" style="margin: 10px 0px 0px 0px">
-                        <tbody>
-                                <tr>
-                                    <td style="font-size:14px;width: 75px;"><span style="font-weight:bold">Perk 1</span></td>
-                                    <td style="font-size:14px">
-                                        <span *ngFor="let perk of dailyWeapon.perk_1;index as i;">
-                                            <span *ngIf="i == 0" style="font-weight: bold;">{{perk.name}}</span>
-                                            <span *ngIf="i != 0">{{perk.name}}</span>
-                                            <span *ngIf="i != (dailyWeapon.perk_1.length-1)">, </span>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="font-size:14px;width: 75px;"><span style="font-weight:bold">Perk 2</span></td>
-                                    <td style="font-size:14px">
-                                        <span *ngFor="let perk of dailyWeapon.perk_2;index as i;">
-                                            <span *ngIf="i == 0" style="font-weight: bold;">{{perk.name}}</span>
-                                            <span *ngIf="i != 0">{{perk.name}}</span>
-                                            <span *ngIf="i != (dailyWeapon.perk_2.length-1)">, </span>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="font-size:14px;width: 75px;"><span style="font-weight:bold">Perk 3</span></td>
-                                    <td style="font-size:14px">
-                                        <span *ngFor="let perk of dailyWeapon.perk_3;index as i;">
-                                            <span *ngIf="i == 0" style="font-weight: bold;">{{perk.name}}</span>
-                                            <span *ngIf="i != 0">{{perk.name}}</span>
-                                            <span *ngIf="i != (dailyWeapon.perk_3.length-1)">, </span>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="font-size:14px;width: 75px;"><span style="font-weight:bold">Perk 4</span></td>
-                                    <td style="font-size:14px">
-                                        <span *ngFor="let perk of dailyWeapon.perk_4;index as i;">
-                                            <span *ngIf="i == 0" style="font-weight: bold;">{{perk.name}}</span>
-                                            <span *ngIf="i != 0">{{perk.name}}</span>
-                                            <span *ngIf="i != (dailyWeapon.perk_4.length-1)">, </span>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="font-size:14px;width: 75px;"><span style="font-weight:bold">Perk 4</span></td>
-                                    <td style="font-size:14px">
-                                        <span *ngFor="let perk of dailyWeapon.masterwork;index as i;">
-                                            <span *ngIf="i == 0" style="font-weight: bold;">{{perk.name}}</span>
-                                            <span *ngIf="i != 0">{{perk.name}}</span>
-                                            <span *ngIf="i != (dailyWeapon.masterwork.length-1)">, </span>
-                                        </span>
-                                    </td>
-                                </tr>
-                                
-                        </tbody>
-                    </table>
-                </mat-card-content>
-              </mat-card>
+        <mat-card-header class="card__header">
+          <div mat-card-avatar [style.background-image]="'url(' + dailyWeapon?.img_url + ')'" class="card__header__img"></div>
+          <mat-card-title>{{dailyWeapon?.name}}</mat-card-title>
+          <mat-card-subtitle class="card__header__subtitle">{{dailyWeapon?.archetype?.name}} <span [style.color]="dailyWeapon?.element?.color"><b>{{dailyWeapon?.element?.name}}</b></span> {{dailyWeapon?.weapon_type?.name}}</mat-card-subtitle>
+          <mat-card-subtitle class="card__header__subtitle">Source: {{dailyWeapon?.drop_source?.name}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <table class="table table-striped" style="margin: 10px 0px 0px 0px">
+                <tbody>
+                        <tr>
+                            <td style="font-size:14px;width: 75px;"><span style="font-weight:bold">Perk 1</span></td>
+                            <td style="font-size:14px">
+                                <span *ngFor="let perk of (dailyWeapon ? dailyWeapon.perk_1 : []);index as i;">
+                                    <span *ngIf="i == 0" style="font-weight: bold;">{{perk.name}}</span>
+                                    <span *ngIf="i != 0">{{perk.name}}</span>
+                                    <span *ngIf="i != (dailyWeapon ? dailyWeapon.perk_1.length-1 : 0)">, </span>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:14px;width: 75px;"><span style="font-weight:bold">Perk 2</span></td>
+                            <td style="font-size:14px">
+                                <span *ngFor="let perk of (dailyWeapon ? dailyWeapon.perk_2 : []);index as i;">
+                                    <span *ngIf="i == 0" style="font-weight: bold;">{{perk.name}}</span>
+                                    <span *ngIf="i != 0">{{perk.name}}</span>
+                                    <span *ngIf="i != (dailyWeapon ? dailyWeapon.perk_2.length-1 : 0)">, </span>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:14px;width: 75px;"><span style="font-weight:bold">Perk 3</span></td>
+                            <td style="font-size:14px">
+                                <span *ngFor="let perk of (dailyWeapon ? dailyWeapon.perk_3 : []);index as i;">
+                                    <span *ngIf="i == 0" style="font-weight: bold;">{{perk.name}}</span>
+                                    <span *ngIf="i != 0">{{perk.name}}</span>
+                                    <span *ngIf="i != (dailyWeapon ? dailyWeapon.perk_3.length-1 : 0)">, </span>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:14px;width: 75px;"><span style="font-weight:bold">Perk 4</span></td>
+                            <td style="font-size:14px">
+                                <span *ngFor="let perk of (dailyWeapon ? dailyWeapon.perk_4 : []);index as i;">
+                                    <span *ngIf="i == 0" style="font-weight: bold;">{{perk.name}}</span>
+                                    <span *ngIf="i != 0">{{perk.name}}</span>
+                                    <span *ngIf="i != (dailyWeapon ? dailyWeapon.perk_4.length-1 : 0)">, </span>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:14px;width: 75px;"><span style="font-weight:bold">Perk 4</span></td>
+                            <td style="font-size:14px">
+                                <span *ngFor="let perk of (dailyWeapon ? dailyWeapon.masterwork : []);index as i;">
+                                    <span *ngIf="i == 0" style="font-weight: bold;">{{perk.name}}</span>
+                                    <span *ngIf="i != 0">{{perk.name}}</span>
+                                    <span *ngIf="i != (dailyWeapon ? dailyWeapon.masterwork.length-1 : 0)">, </span>
+                                </span>
+                            </td>
+                        </tr>
+                        
+                </tbody>
+            </table>
+        </mat-card-content>
+      </mat-card>
 
 </mat-expansion-panel>
 

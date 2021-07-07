@@ -6,6 +6,7 @@ import { environment } from "src/environments/environment";
 import { AlterOfSorrow } from "../models/altar-of-sorrow.model";
 import { AscendantChallenge } from "../models/ascendant-challenge.model";
 import { CurrentSeason } from "../models/current-season.model";
+import { NightfallWeapon } from "../models/nightfall-weapon.model";
 import { WeaponRoll } from "../models/weapon-roll.model";
 
 @Injectable({
@@ -48,6 +49,14 @@ export class CMSService {
         return this.http.get(environment.cmsUrl + '/current-season').pipe(
             map(resp => {
                 return <CurrentSeason>resp
+            })
+        );
+    }
+
+    get_nightfallWeapons(): Observable<NightfallWeapon[]> { 
+        return this.http.get(environment.cmsUrl + '/nightfall-rotations').pipe(
+            map(resp => {
+                return <NightfallWeapon[]>resp
             })
         );
     }

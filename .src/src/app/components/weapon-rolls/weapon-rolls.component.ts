@@ -16,7 +16,7 @@ export class WeaponRollsComponent implements OnInit,OnDestroy {
   allWeaponRolls: WeaponRoll[] = []
   weaponRolls: WeaponRoll[] = []
   quickSearchValue: string = ''
-  showCurrentSeason: boolean = false
+  showCurrentSeason: boolean = true
   showUnobtainable: boolean = false
   currentSeason?: CurrentSeason
 

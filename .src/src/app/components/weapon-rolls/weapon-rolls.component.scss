@@ -32,6 +32,11 @@
             border-radius: 25%;
             height: 50px;
             width: 50px;
+            &-red{
+                border-color: red;
+                border-width: 2px;
+                border-style: solid;
+            }
         }
         &__subtitle{
             font-weight: 500;

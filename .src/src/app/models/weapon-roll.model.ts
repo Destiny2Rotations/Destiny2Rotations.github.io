@@ -12,6 +12,7 @@ export class WeaponRoll {
         public img_url: string,
         public description: string,
         public isObtainable: boolean,
+        public isCraftable: boolean,
         public archetype: Archetype,
         public element: WeaponElement,
         public perk_1: Perk[],

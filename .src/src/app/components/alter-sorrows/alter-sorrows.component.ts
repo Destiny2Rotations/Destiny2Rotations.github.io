@@ -24,9 +24,6 @@ export class AlterSorrowsComponent implements OnInit,OnDestroy {
 
   ngOnInit(): void {
     this.subscriptions.push(this.store.select('common','AltersOfSorrow').subscribe(store_alts => {
-      if(store_alts.length == 0) {
-        this.store.dispatch(CommonActions.Get_Alters())
-      }
       if(store_alts)
         this.alters = store_alts
       if(this.dailyIndex >= 0 && this.rolls.length > 0 && this.alters.length > 0)

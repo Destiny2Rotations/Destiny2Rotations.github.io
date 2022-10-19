@@ -2,7 +2,7 @@ import { Archetype } from "./archetype.model";
 import { DropSource } from "./drop-source.model";
 import { Perk } from "./perk.model";
 import { WeaponAttribute } from "./weapon-attributes.model";
-import { WeaponElement } from "./weapon-element.model";
+import { D2Element } from "./element.model";
 import { WeaponType } from "./weapon-type.model";
 
 export class WeaponRoll {
@@ -14,7 +14,7 @@ export class WeaponRoll {
         public isObtainable: boolean,
         public isCraftable: boolean,
         public archetype: Archetype,
-        public element: WeaponElement,
+        public element: D2Element,
         public perk_1: Perk[],
         public perk_2: Perk[],
         public perk_3: Perk[],

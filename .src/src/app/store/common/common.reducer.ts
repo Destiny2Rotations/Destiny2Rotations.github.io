@@ -6,6 +6,7 @@ import { WeaponRoll } from 'src/app/models/weapon-roll.model';
 import { AscendantChallenge } from 'src/app/models/ascendant-challenge.model';
 import { AlterOfSorrow } from 'src/app/models/altar-of-sorrow.model';
 import { CurrentSeason } from 'src/app/models/current-season.model';
+import { Nightfall } from 'src/app/models/nightfall.model';
 
 function calculateHowManyWeeks () {
     var today = new Date();
@@ -44,7 +45,7 @@ export interface State {
     dailyResets?: number;
     AltersOfSorrow: AlterOfSorrow[];
     currentSeason?: CurrentSeason;
-    currentNightfallWeapon?: WeaponRoll[];
+    nightfalls?: Nightfall[];
 }
 
 const intialState: State = {
@@ -55,7 +56,7 @@ const intialState: State = {
     dailyResets: undefined,
     AltersOfSorrow: [],
     currentSeason: undefined,
-    currentNightfallWeapon: undefined
+    nightfalls: []
 }
 
 const commonReducer = createReducer(
@@ -87,14 +88,14 @@ const commonReducer = createReducer(
             currentSeason: season
          }
     }),
-    on(CommonActions.Get_NightfallWeapons_Success, (state, { weapons }) => {
-        let maxOrder = Math.max.apply(Math, weapons.map(function(o) { return o.order }))
-        let orderRotation = calculateHowManyWeeks() % maxOrder        
-        let weaponArray = [...weapons]
-        weaponArray = weaponArray.filter((a) => a.order == (orderRotation + 1))
+    on(CommonActions.Get_Nightfall_Success, (state, { nightfalls }) => {
+        //let maxOrder = Math.max.apply(Math, weapons.map(function(o) { return o.order }))
+        //let orderRotation = calculateHowManyWeeks() % maxOrder
+        //let weaponArray = [...weapons]
+        //weaponArray = weaponArray.filter((a) => a.order == (orderRotation + 1))
         return {
             ...state,
-            currentNightfallWeapon: weaponArray.map(k => k.weapons_roll)
+            nightfalls: nightfalls
         }
     })
 )

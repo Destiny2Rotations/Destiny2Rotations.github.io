@@ -30,7 +30,7 @@ import { AscendantChallengeComponent } from './components/ascendant-challenge/as
 import { AlterSorrowsComponent } from './components/alter-sorrows/alter-sorrows.component';
 import { CurseStrengthComponent } from './components/curse-strength/curse-strength.component';
 import { SafePipe } from './pipes/safe.pipe';
-import { NightfallWeaponComponent } from './components/nightfall-weapon/nightfall-weapon.component';
+import { NightfallComponent } from './components/nightfall/nightfall.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +41,7 @@ import { NightfallWeaponComponent } from './components/nightfall-weapon/nightfal
     AscendantChallengeComponent,
     AlterSorrowsComponent,
     CurseStrengthComponent,
-    NightfallWeaponComponent
+    NightfallComponent
   ],
   imports: [
     BrowserModule,

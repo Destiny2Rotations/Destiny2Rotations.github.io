@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NightfallWeaponComponent } from './nightfall-weapon.component';
+import { NightfallComponent } from './nightfall.component';
 
-describe('NightfallWeaponComponent', () => {
-  let component: NightfallWeaponComponent;
-  let fixture: ComponentFixture<NightfallWeaponComponent>;
+describe('NightfallComponent', () => {
+  let component: NightfallComponent;
+  let fixture: ComponentFixture<NightfallComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NightfallWeaponComponent ]
+      declarations: [ NightfallComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NightfallWeaponComponent);
+    fixture = TestBed.createComponent(NightfallComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -24,7 +24,6 @@ export class WeaponRollsComponent implements OnInit,OnDestroy {
 
   subscriptions: Subscription[] = []
   ngOnInit(): void {
-    this.store.dispatch(CommonActions.Get_Rolls())
     this.subscriptions.push(this.store.select('common','weaponRolls').subscribe(rolls => {
       this.allWeaponRolls = rolls
       this.weaponRolls = [...this.allWeaponRolls]

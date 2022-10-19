@@ -20,9 +20,29 @@ export class CommonEffects {
         private cmsService: CMSService
     ) {}
 
+    
+    // getting the element will populate all other fields
+    get_elements$ = createEffect(
+        () => this.actions$.pipe(
+          ofType(CommonActions.GET_ELEMENTS),
+          mergeMap(() => this.cmsService.get_elements().pipe(
+              map(resp => { 
+                  return { type: CommonActions.GET_ELEMENTS_SUCCESS, rolls: resp }
+            })
+          ))
+        )
+    )
+    get_currentSeason$ = createEffect(
+        () => this.actions$.pipe(
+          ofType(CommonActions.GET_ELEMENTS_SUCCESS),
+          mergeMap(() => this.cmsService.get_currentSeason().pipe(
+              map(resp => ({ type: CommonActions.GET_CURRENTSEASON_SUCCESS, season: resp }))
+          ))
+        )
+    )
     get_rolls$ = createEffect(
         () => this.actions$.pipe(
-          ofType(CommonActions.GET_ROLLS),
+          ofType(CommonActions.GET_CURRENTSEASON_SUCCESS),
           mergeMap(() => this.cmsService.get_weaponRolls().pipe(
               map(resp => { 
                   return { type: CommonActions.GET_ROLLS_SUCCESS, rolls: resp }
@@ -31,9 +51,10 @@ export class CommonEffects {
         )
     )
     
+    // All other calls wait for the previous calls to finish
     get_acs$ = createEffect(
         () => this.actions$.pipe(
-          ofType(CommonActions.GET_ROLLS),
+          ofType(CommonActions.GET_ROLLS_SUCCESS),
           mergeMap(() => this.cmsService.get_ascendantChallenge().pipe(
               map(resp => ({ type: CommonActions.GET_AC_SUCCESS, acs: resp }))
           ))
@@ -42,27 +63,9 @@ export class CommonEffects {
     
     get_alters$ = createEffect(
         () => this.actions$.pipe(
-          ofType(CommonActions.GET_ALTERS),
+          ofType(CommonActions.GET_ROLLS_SUCCESS),
           mergeMap(() => this.cmsService.get_alterOfSorrows().pipe(
               map(resp => ({ type: CommonActions.GET_ALTERS_SUCCESS, alters: resp }))
-          ))
-        )
-    )
-
-    get_currentSeason$ = createEffect(
-        () => this.actions$.pipe(
-          ofType(CommonActions.GET_ROLLS),
-          mergeMap(() => this.cmsService.get_currentSeason().pipe(
-              map(resp => ({ type: CommonActions.GET_CURRENTSEASON_SUCCESS, season: resp }))
-          ))
-        )
-    )
-
-    get_currentNightfallWeapon$ = createEffect(
-        () => this.actions$.pipe(
-          ofType(CommonActions.GET_ROLLS),
-          mergeMap(() => this.cmsService.get_nightfallWeapons().pipe(
-              map(resp => ({ type: CommonActions.GET_NIGHTFALLWEAPONS_SUCCESS, weapons: resp }))
           ))
         )
     )

@@ -7,6 +7,7 @@ import { AlterOfSorrow } from "../models/altar-of-sorrow.model";
 import { AscendantChallenge } from "../models/ascendant-challenge.model";
 import { CurrentSeason } from "../models/current-season.model";
 import { NightfallWeapon } from "../models/nightfall-weapon.model";
+import { D2Element } from "../models/element.model";
 import { WeaponRoll } from "../models/weapon-roll.model";
 
 @Injectable({
@@ -25,6 +26,14 @@ export class CMSService {
         return this.http.get(environment.cmsUrl + '/weapons-rolls?_limit=-1').pipe(
             map(resp => {
                 return <WeaponRoll[]>resp
+            })
+        );
+    }
+
+    get_elements(): Observable<D2Element[]> {
+        return this.http.get(environment.cmsUrl + '/elements?_limit=-1').pipe(
+            map(resp => {
+                return <D2Element[]>resp
             })
         );
     }

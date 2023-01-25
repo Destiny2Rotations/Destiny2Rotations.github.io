@@ -1,0 +1,27 @@
+@import '../../../styles.scss';
+.link-button-container {
+    display: flex;
+    flex-direction: column;
+    padding: .5em;
+    &__button {
+        height: 48px!important;
+    }
+}
+
+
+.columns {
+    padding: .5em .5em 0em .5em;
+    display: grid;
+    @media (min-width: $min-width-phone) {
+        grid-template-columns: repeat(1, 100%);            
+    }
+    @media (min-width: $min-width-tablet) {
+        grid-template-columns: repeat(1, 100%);
+    }
+    @media (min-width: $min-width-desktop) {
+        grid-template-columns: repeat(2, calc(50% - .5em ));
+    }
+    
+    column-gap:1em;
+    row-gap: .5em;
+}

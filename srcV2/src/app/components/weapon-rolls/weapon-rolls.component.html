@@ -1,0 +1,173 @@
+<mat-accordion>
+    <mat-expansion-panel [expanded]="sourceExpanded == 0">
+        <mat-expansion-panel-header class="panel-header">
+            <mat-panel-title>
+                All Curated Rolls
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        
+        <mat-form-field class="col-md-4 col-sm-12 col-xs-12">
+            <mat-label>Quick Search (Name, Source)</mat-label>
+            <input matInput type="text" [(ngModel)]="quickSearchValue">
+            <button matSuffix mat-icon-button aria-label="Clear" (click)="quickSearchValue = ''">
+              <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
+        <mat-checkbox [(ngModel)]="showCurrentSeason" color="primary" style="padding-left: 15px;">
+              Show Only New Weapons
+        </mat-checkbox>
+        <div class="panel__body">
+            <div *ngFor="let roll of ((weaponRolls && weaponRolls.length > 0 ? weaponRolls : []) | weaponFilter:{search: quickSearchValue,season:(showCurrentSeason && currentSeason) ? currentSeason.season : 0, showUnobtainable: showUnobtainable})">
+                <mat-card class="mat-app-background">
+                    <mat-card-header class="card__header">
+                      <div mat-card-avatar [style.background-image]="'url(' + roll.img_url + ')'" class="card__header__img" [class.card__header__img-red]="roll.isCraftable"></div>
+                      <mat-card-title>{{roll.name}}</mat-card-title>
+                      <mat-card-subtitle class="card__header__subtitle">{{roll.archetype.name}} <span [style.color]="roll.element.color"><b>{{roll.element.name}}</b></span> {{roll.weapon_type.name}}</mat-card-subtitle>
+                      <mat-card-subtitle class="card__header__subtitle">Source: {{roll.drop_source.name}}</mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <table class="table table-striped card__perk-table">
+                            <tbody>
+                                    <tr class="card__perk-table__tr">
+                                        <td class="card__perk-table__tr__td w75px"><span style="font-weight:bold">Perk 1</span></td>
+                                        <td class="card__perk-table__tr__td">
+                                            <span *ngFor="let perk of roll.perk_1;index as i;">
+                                                <span *ngIf="i == 0" style="font-weight: bold;">{{perk.name}}</span>
+                                                <span *ngIf="i != 0">{{perk.name}}</span>
+                                                <span *ngIf="i != (roll.perk_1.length-1)">, </span>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="card__perk-table__tr__td w75px"><span style="font-weight:bold">Perk 2</span></td>
+                                        <td class="card__perk-table__tr__td">
+                                            <span *ngFor="let perk of roll.perk_2;index as i;">
+                                                <span *ngIf="i == 0" style="font-weight: bold;">{{perk.name}}</span>
+                                                <span *ngIf="i != 0">{{perk.name}}</span>
+                                                <span *ngIf="i != (roll.perk_2.length-1)">, </span>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="card__perk-table__tr__td w75px"><span style="font-weight:bold">Perk 3</span></td>
+                                        <td class="card__perk-table__tr__td">
+                                            <span *ngFor="let perk of roll.perk_3;index as i;">
+                                                <span *ngIf="i == 0" style="font-weight: bold;">{{perk.name}}</span>
+                                                <span *ngIf="i != 0">{{perk.name}}</span>
+                                                <span *ngIf="i != (roll.perk_3.length-1)">, </span>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="card__perk-table__tr__td w75px"><span style="font-weight:bold">Perk 4</span></td>
+                                        <td class="card__perk-table__tr__td">
+                                            <span *ngFor="let perk of roll.perk_4;index as i;">
+                                                <span *ngIf="i == 0" style="font-weight: bold;">{{perk.name}}</span>
+                                                <span *ngIf="i != 0">{{perk.name}}</span>
+                                                <span *ngIf="i != (roll.perk_4.length-1)">, </span>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="card__perk-table__tr__td w75px"><span style="font-weight:bold">Masterwork</span></td>
+                                        <td class="card__perk-table__tr__td">
+                                            <span *ngFor="let perk of roll.masterwork;index as i;">
+                                                <span *ngIf="i == 0" style="font-weight: bold;">{{perk.name}}</span>
+                                                <span *ngIf="i != 0">{{perk.name}}</span>
+                                                <span *ngIf="i != (roll.masterwork.length-1)">, </span>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    
+                            </tbody>
+                        </table>
+                    </mat-card-content>
+                  </mat-card>
+            </div>
+        </div>
+    </mat-expansion-panel>
+    
+    <!-- source arrays -->
+    <mat-expansion-panel *ngIf="selectedSource" [expanded]="sourceExpanded == 1" (opened)="sourceExpanded = 1" (closed)="sourceExpanded =-1">
+        <mat-expansion-panel-header class="panel-header">
+            <mat-panel-title [innerHTML]="selectedSource.name">
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        
+        <div class="panel__body">
+            <div *ngFor="let roll of (selectedSource.weapons && selectedSource.weapons.length > 0 ? selectedSource.weapons : [])">
+                <mat-card class="mat-app-background">
+                    <mat-card-header class="card__header">
+                    <div mat-card-avatar [style.background-image]="'url(' + roll.img_url + ')'" class="card__header__img" [class.card__header__img-red]="roll.isCraftable"></div>
+                    <mat-card-title>{{roll.name}}</mat-card-title>
+                    <mat-card-subtitle class="card__header__subtitle">{{roll.archetype.name}} <span [style.color]="roll.element.color"><b>{{roll.element.name}}</b></span> {{roll.weapon_type.name}}</mat-card-subtitle>
+                    <mat-card-subtitle class="card__header__subtitle">Source: {{roll.drop_source.name}}</mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <table class="table table-striped card__perk-table">
+                            <tbody>
+                                    <tr class="card__perk-table__tr">
+                                        <td class="card__perk-table__tr__td w75px"><span style="font-weight:bold">Perk 1</span></td>
+                                        <td class="card__perk-table__tr__td">
+                                            <span *ngFor="let perk of roll.perk_1;index as i;">
+                                                <span *ngIf="i == 0" style="font-weight: bold;">{{perk.name}}</span>
+                                                <span *ngIf="i != 0">{{perk.name}}</span>
+                                                <span *ngIf="i != (roll.perk_1.length-1)">, </span>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="card__perk-table__tr__td w75px"><span style="font-weight:bold">Perk 2</span></td>
+                                        <td class="card__perk-table__tr__td">
+                                            <span *ngFor="let perk of roll.perk_2;index as i;">
+                                                <span *ngIf="i == 0" style="font-weight: bold;">{{perk.name}}</span>
+                                                <span *ngIf="i != 0">{{perk.name}}</span>
+                                                <span *ngIf="i != (roll.perk_2.length-1)">, </span>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="card__perk-table__tr__td w75px"><span style="font-weight:bold">Perk 3</span></td>
+                                        <td class="card__perk-table__tr__td">
+                                            <span *ngFor="let perk of roll.perk_3;index as i;">
+                                                <span *ngIf="i == 0" style="font-weight: bold;">{{perk.name}}</span>
+                                                <span *ngIf="i != 0">{{perk.name}}</span>
+                                                <span *ngIf="i != (roll.perk_3.length-1)">, </span>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="card__perk-table__tr__td w75px"><span style="font-weight:bold">Perk 4</span></td>
+                                        <td class="card__perk-table__tr__td">
+                                            <span *ngFor="let perk of roll.perk_4;index as i;">
+                                                <span *ngIf="i == 0" style="font-weight: bold;">{{perk.name}}</span>
+                                                <span *ngIf="i != 0">{{perk.name}}</span>
+                                                <span *ngIf="i != (roll.perk_4.length-1)">, </span>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="card__perk-table__tr__td w75px"><span style="font-weight:bold">Masterwork</span></td>
+                                        <td class="card__perk-table__tr__td">
+                                            <span *ngFor="let perk of roll.masterwork;index as i;">
+                                                <span *ngIf="i == 0" style="font-weight: bold;">{{perk.name}}</span>
+                                                <span *ngIf="i != 0">{{perk.name}}</span>
+                                                <span *ngIf="i != (roll.masterwork.length-1)">, </span>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    
+                            </tbody>
+                        </table>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+    </mat-expansion-panel>
+</mat-accordion>
+
+
+<div class="source-grid">
+    <button mat-raised-button *ngFor="let drop_source of (sourceArray && sourceArray.length > 0 ? sourceArray : [])" [innerHTML]="drop_source.name" (click)="drop_source_clicked(drop_source)"></button>
+</div>
+

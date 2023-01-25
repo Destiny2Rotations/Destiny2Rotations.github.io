@@ -1,0 +1,15 @@
+@import '../../../styles.scss';
+.link-button-container {
+    display: flex;
+    flex-direction: column;
+    padding: .5em;
+    &__button {
+        height: 48px!important;
+    }
+}
+
+.rolls {
+    display: flex;
+    flex-direction: column;
+    padding: .5em;
+}

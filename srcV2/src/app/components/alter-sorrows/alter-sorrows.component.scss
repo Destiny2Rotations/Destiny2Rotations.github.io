@@ -1,0 +1,40 @@
+
+.card {
+    padding-right: 0px;
+    padding-left: 0px;
+    &__header{
+        display: flex;
+        align-items: center;
+        margin-bottom: 1em;
+
+        &__img{
+            background-size: cover;
+            border-radius: 25%;
+            height: 50px;
+            width: 50px;
+            &-red{
+                border-color: red;
+                border-width: 2px;
+                border-style: solid;
+            }
+        }
+        &__subtitle{
+            font-weight: 500;
+        }
+    }
+
+    &__perk-table {
+        margin: 10px 0px 0px 0px;
+
+        &__tr {
+            &__td {
+                font-size:14px;
+                color: white!important;
+            }
+        }
+    }
+}
+
+.w75px {
+    width: 75px;
+}

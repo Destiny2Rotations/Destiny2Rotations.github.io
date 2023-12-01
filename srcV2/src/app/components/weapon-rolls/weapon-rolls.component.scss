@@ -41,7 +41,13 @@
     &__header{
         display: flex;
         align-items: center;
+        align-content: stretch;
         margin-bottom: 1em;
+
+        &__title{
+            flex-grow: 2;
+            padding: 0px 1em 0px 1em;
+        }
 
         &__img{
             background-size: cover;

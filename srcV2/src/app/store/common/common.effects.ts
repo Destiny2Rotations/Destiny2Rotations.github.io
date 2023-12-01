@@ -44,8 +44,29 @@ export class CommonEffects {
         () => this.actions$.pipe(
           ofType(CommonActions.GET_CURRENTSEASON_SUCCESS),
           mergeMap(() => this.cmsService.get_weaponRolls().pipe(
-              map(resp => { 
-                  return { type: CommonActions.GET_ROLLS_SUCCESS, rolls: resp }
+              map(resp => {
+
+                  //add isPve && isPvp
+                  let formattedRolls = resp.map(roll => {
+                    roll.isPve = false
+                    roll.isPvp = false
+                    let nameSplit = roll.name.split(" - ")
+                    if(nameSplit.length > 0) {
+                      if (nameSplit[nameSplit.length-1].toLowerCase().includes("pve")) {
+                        roll.isPve = true
+                      }
+                      if (nameSplit[nameSplit.length-1].toLowerCase().includes("pvp")) {
+                        roll.isPvp = true
+                      }
+                      roll.name = nameSplit[0]
+                    }
+                    return roll
+                  })
+
+                  return { 
+                    type: CommonActions.GET_ROLLS_SUCCESS, 
+                    rolls: formattedRolls
+                  }
             })
           ))
         )

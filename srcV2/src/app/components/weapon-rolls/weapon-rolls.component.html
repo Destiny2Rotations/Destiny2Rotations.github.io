@@ -14,16 +14,21 @@
             </button>
         </mat-form-field>
         <mat-checkbox [(ngModel)]="showCurrentSeason" color="primary" style="padding-left: 15px;">
-              Show Only New Weapons
+              Show Only New Season
         </mat-checkbox>
         <div class="panel__body">
             <div *ngFor="let roll of ((weaponRolls && weaponRolls.length > 0 ? weaponRolls : []) | weaponFilter:{search: quickSearchValue,season:(showCurrentSeason && currentSeason) ? currentSeason.season : 0, showUnobtainable: showUnobtainable})">
                 <mat-card class="mat-app-background">
                     <mat-card-header class="card__header">
                       <div mat-card-avatar [style.background-image]="'url(' + roll.img_url + ')'" class="card__header__img" [class.card__header__img-red]="roll.isCraftable"></div>
-                      <mat-card-title>{{roll.name}}</mat-card-title>
-                      <mat-card-subtitle class="card__header__subtitle">{{roll.archetype.name}} <span [style.color]="roll.element.color"><b>{{roll.element.name}}</b></span> {{roll.weapon_type.name}}</mat-card-subtitle>
-                      <mat-card-subtitle class="card__header__subtitle">Source: {{roll.drop_source.name}}</mat-card-subtitle>
+                      <div class="card__header__title">
+                        <mat-card-title>{{roll.name}}</mat-card-title>
+                        <mat-card-subtitle class="card__header__subtitle">{{roll.archetype.name}} <span [style.color]="roll.element.color"><b>{{roll.element.name}}</b></span> {{roll.weapon_type.name}}</mat-card-subtitle>
+                        <mat-card-subtitle class="card__header__subtitle">Source: {{roll.drop_source.name}}</mat-card-subtitle>
+                      </div>                      
+                      <div *ngIf="roll.isPve && !roll.isPvp" style="background-image: url('../../../assets/Vanguard.png');" class="card__header__img"></div>
+                      <div *ngIf="!roll.isPve && roll.isPvp" style="background-image: url('../../../assets/Crucible.png');" class="card__header__img"></div>
+                      <div *ngIf="roll.isPve && roll.isPvp" style="background-image: url('../../../assets/CrucibleVanguard.png');" class="card__header__img"></div>
                     </mat-card-header>
                     <mat-card-content>
                         <table class="table table-striped card__perk-table">
@@ -98,10 +103,15 @@
             <div *ngFor="let roll of (selectedSource.weapons && selectedSource.weapons.length > 0 ? selectedSource.weapons : [])">
                 <mat-card class="mat-app-background">
                     <mat-card-header class="card__header">
-                    <div mat-card-avatar [style.background-image]="'url(' + roll.img_url + ')'" class="card__header__img" [class.card__header__img-red]="roll.isCraftable"></div>
-                    <mat-card-title>{{roll.name}}</mat-card-title>
-                    <mat-card-subtitle class="card__header__subtitle">{{roll.archetype.name}} <span [style.color]="roll.element.color"><b>{{roll.element.name}}</b></span> {{roll.weapon_type.name}}</mat-card-subtitle>
-                    <mat-card-subtitle class="card__header__subtitle">Source: {{roll.drop_source.name}}</mat-card-subtitle>
+                        <div mat-card-avatar [style.background-image]="'url(' + roll.img_url + ')'" class="card__header__img" [class.card__header__img-red]="roll.isCraftable"></div>
+                        <div class="card__header__title">
+                          <mat-card-title>{{roll.name}}</mat-card-title>
+                          <mat-card-subtitle class="card__header__subtitle">{{roll.archetype.name}} <span [style.color]="roll.element.color"><b>{{roll.element.name}}</b></span> {{roll.weapon_type.name}}</mat-card-subtitle>
+                          <mat-card-subtitle class="card__header__subtitle">Source: {{roll.drop_source.name}}</mat-card-subtitle>
+                        </div>                      
+                        <div *ngIf="roll.isPve && !roll.isPvp" style="background-image: url('../../../assets/Vanguard.png');" class="card__header__img"></div>
+                        <div *ngIf="!roll.isPve && roll.isPvp" style="background-image: url('../../../assets/Crucible.png');" class="card__header__img"></div>
+                        <div *ngIf="roll.isPve && roll.isPvp" style="background-image: url('../../../assets/CrucibleVanguard.png');" class="card__header__img"></div>
                     </mat-card-header>
                     <mat-card-content>
                         <table class="table table-striped card__perk-table">

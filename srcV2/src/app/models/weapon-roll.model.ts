@@ -22,6 +22,8 @@ export class WeaponRoll {
         public weapon_type: WeaponType,
         public masterwork: WeaponAttribute[],
         public drop_source: DropSource,
-        public season: number
+        public season: number,
+        public isPve: boolean,
+        public isPvp: boolean
     ) {}
 }

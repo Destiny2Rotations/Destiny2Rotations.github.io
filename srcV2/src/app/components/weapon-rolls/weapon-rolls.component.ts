@@ -23,6 +23,7 @@ export class WeaponRollsComponent implements OnInit,OnDestroy {
   quickSearchValue: string = ''
   showCurrentSeason: boolean = true
   showUnobtainable: boolean = false
+  showCurrentRotation: boolean = true
   currentSeason?: CurrentSeason
 
   constructor(private store: Store<FromApp.AppState>) { }
@@ -66,6 +67,7 @@ export class WeaponRollsComponent implements OnInit,OnDestroy {
 
   drop_source_clicked(drop_source : any) {
     this.selectedSource = drop_source
+    this.showCurrentRotation = true
     this.sourceExpanded = 1
     document.body.scrollTop = document.documentElement.scrollTop = 0
   }

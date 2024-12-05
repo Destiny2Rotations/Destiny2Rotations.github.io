@@ -16,6 +16,8 @@ export class WeaponFilterPipe implements PipeTransform {
                 if(a.drop_source.name == b.drop_source.name){
                     if (a.name > b.name) {
                         return 1
+                    } else if (a.name == b.name && a.updated_at > b.updated_at) {
+                        return 1
                     } else {
                         return -1
                     }
@@ -36,6 +38,45 @@ export class WeaponFilterPipe implements PipeTransform {
                             return true
                     }
                         
+            }
+            return false
+          })
+    }
+}
+
+
+@Pipe({
+    name: 'weaponSourceFilter',
+    pure: false
+})
+export class WeaponSourceFilterPipe implements PipeTransform {
+    transform(items: WeaponRoll[], filter: {showCurrentRotation?:boolean} ): any {
+        items.sort((a,b)=>{
+            if(a.season > b.season){
+                return -1
+            } else if (a.season < b.season) {
+                return 1
+            } else {
+                if(a.drop_source.name == b.drop_source.name){
+                    if (a.name > b.name) {
+                        return 1
+                    } else if (a.name == b.name && a.updated_at > b.updated_at) {
+                        return 1
+                    } else {
+                        return -1
+                    }
+                } else if (a.drop_source.name > b.drop_source.name) {
+                    return 1
+                } else {
+                    return -1
+                }
+            }
+            
+        })
+
+        return items.filter(roll => {
+            if((filter.showCurrentRotation && roll.isObtainable) || !filter.showCurrentRotation) {
+                return true
             }
             return false
           })

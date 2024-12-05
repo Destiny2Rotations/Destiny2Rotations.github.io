@@ -98,9 +98,12 @@
             <mat-panel-title [innerHTML]="selectedSource.name">
             </mat-panel-title>
         </mat-expansion-panel-header>
+        <mat-checkbox [(ngModel)]="showCurrentRotation" color="primary" style="padding-left: 15px;">
+              Show Only Current Rotation
+        </mat-checkbox>
         
         <div class="panel__body">
-            <div *ngFor="let roll of (selectedSource.weapons && selectedSource.weapons.length > 0 ? selectedSource.weapons : [])">
+            <div *ngFor="let roll of ((selectedSource.weapons && selectedSource.weapons.length > 0 ? selectedSource.weapons : []) | weaponSourceFilter:{showCurrentRotation: showCurrentRotation})">
                 <mat-card class="mat-app-background">
                     <mat-card-header class="card__header">
                         <div mat-card-avatar [style.background-image]="'url(' + roll.img_url + ')'" class="card__header__img" [class.card__header__img-red]="roll.isCraftable"></div>

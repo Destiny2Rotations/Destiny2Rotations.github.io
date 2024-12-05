@@ -25,7 +25,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 
 import { WeaponRollsComponent } from './components/weapon-rolls/weapon-rolls.component';
-import { WeaponFilterPipe } from './pipes/weapon-filter.pipe';
+import { WeaponFilterPipe,WeaponSourceFilterPipe } from './pipes/weapon-filter.pipe';
 import { AscendantChallengeComponent } from './components/ascendant-challenge/ascendant-challenge.component';
 import { AlterSorrowsComponent } from './components/alter-sorrows/alter-sorrows.component';
 import { CurseStrengthComponent } from './components/curse-strength/curse-strength.component';
@@ -39,6 +39,7 @@ import { RotationsComponent } from './components/rotations/rotations.component';
     AppComponent,
     WeaponRollsComponent,
     WeaponFilterPipe,
+    WeaponSourceFilterPipe,
     SafePipe,
     AscendantChallengeComponent,
     AlterSorrowsComponent,

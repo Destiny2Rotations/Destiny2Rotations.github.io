@@ -24,6 +24,7 @@ export class WeaponRoll {
         public drop_source: DropSource,
         public season: number,
         public isPve: boolean,
-        public isPvp: boolean
+        public isPvp: boolean,
+        public updated_at: string
     ) {}
 }

@@ -181,6 +181,11 @@
 
 
 <div class="source-grid">
-    <button mat-raised-button *ngFor="let drop_source of (sourceArray && sourceArray.length > 0 ? sourceArray : [])" [innerHTML]="drop_source.name" (click)="drop_source_clicked(drop_source)"></button>
+    <div *ngFor="let source_group of (sourceGroupArray && sourceGroupArray.length > 0 ? sourceGroupArray : [])">
+        <mat-divider></mat-divider>
+        <mat-action-list>
+            <h4 matSubheader [innerHTML]="source_group.name"></h4>
+            <button mat-list-item *ngFor="let drop_source of source_group.sources" [innerHTML]="drop_source.name" (click)="drop_source_clicked(drop_source)"></button>
+        </mat-action-list>
+    </div>
 </div>
-

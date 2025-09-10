@@ -23,6 +23,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatListModule} from '@angular/material/list';
 
 import { WeaponRollsComponent } from './components/weapon-rolls/weapon-rolls.component';
 import { WeaponFilterPipe,WeaponSourceFilterPipe } from './pipes/weapon-filter.pipe';
@@ -70,6 +71,7 @@ import { RotationsComponent } from './components/rotations/rotations.component';
     MatButtonModule,
     MatFormFieldModule,
     MatCheckboxModule,
+    MatListModule,
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
   ],
   providers: [],

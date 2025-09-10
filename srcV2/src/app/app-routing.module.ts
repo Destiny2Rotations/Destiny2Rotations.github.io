@@ -4,8 +4,8 @@ import { JetCuratedComponent } from './components/jet-curated/jet-curated.compon
 import { RotationsComponent } from './components/rotations/rotations.component';
 
 const routes: Routes = [
-  { path: '', component: RotationsComponent },
-  { path: 'jet-curated', component: JetCuratedComponent }
+  { path: '', component: JetCuratedComponent },
+  { path: 'weekly-rotations', component: RotationsComponent }
 ];
 
 @NgModule({

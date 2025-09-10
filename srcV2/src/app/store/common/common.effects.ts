@@ -10,6 +10,9 @@ import { Store } from '@ngrx/store';
 import * as fromApp from '../app.reducer'
 import { state } from '@angular/animations';
 import { WeaponRoll } from 'src/app/models/weapon-roll.model';
+import { D2Element } from 'src/app/models/element.model';
+import { WeaponType } from 'src/app/models/weapon-type.model';
+import { DropSource } from 'src/app/models/drop-source.model';
 
 @Injectable()
 export class CommonEffects {
@@ -60,6 +63,17 @@ export class CommonEffects {
                       }
                       roll.name = nameSplit[0]
                     }
+
+                    if(!roll.drop_source) {
+                      roll.drop_source = new DropSource(-1,"Core - Unknown")
+                    }
+                    if(!roll.element) {
+                      roll.element = new D2Element(-1,"unknown","WHITE")
+                    }
+                    if(!roll.weapon_type) {
+                      roll.weapon_type = new WeaponType(-1,"")
+                    }
+
                     return roll
                   })
 

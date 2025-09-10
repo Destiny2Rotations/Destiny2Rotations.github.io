@@ -18,6 +18,7 @@ export class WeaponRollsComponent implements OnInit,OnDestroy {
   
   selectedSource: any = null
   sourceArray: any[] = []
+  sourceGroupArray: any [] = []
   sourceExpanded:number = -1
 
   quickSearchValue: string = ''
@@ -62,6 +63,31 @@ export class WeaponRollsComponent implements OnInit,OnDestroy {
     }
     this.sourceArray = this.sourceArray.sort((a,b) => {
       return a.name.localeCompare(b.name)
+    })
+
+    let groupedSourceHash : any = {}
+    this.sourceArray.forEach(source => {
+      let nameSplit = source.name.split(" - ")
+      let groupName = nameSplit.length > 1 ? nameSplit[0] : "Other"
+      source.name = nameSplit.length > 1 ? nameSplit[1] : source.name
+      if (!groupedSourceHash[groupName]) {
+        groupedSourceHash[groupName] = {
+          name: groupName,
+          sources: []
+        }
+      }
+      groupedSourceHash[groupName].sources.push(source)
+    })
+
+    for(var key in groupedSourceHash) {
+      this.sourceGroupArray.push(groupedSourceHash[key])
+    }
+
+    const sortOrder: any = {Core:1,Episode:2,Dungeon:3,Raid:4,Gunsmith:5,Destination:6,Event:7,Other:8}
+    this.sourceGroupArray = this.sourceGroupArray.sort((a,b) => {
+      const sortA = sortOrder[a.name] ? sortOrder[a.name] : 999
+      const sortB = sortOrder[b.name] ? sortOrder[b.name] : 999
+      return sortA - sortB
     })
   }
 

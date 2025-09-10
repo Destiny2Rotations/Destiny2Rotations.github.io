@@ -8,26 +8,11 @@ import { WeaponRoll } from '../models/weapon-roll.model';
 export class WeaponFilterPipe implements PipeTransform {
     transform(items: WeaponRoll[], filter: {search:string,season?:number,showUnobtainable?:boolean} ): any {
         items.sort((a,b)=>{
-            if(a.season > b.season){
+            if(a.updated_at > b.updated_at){
                 return -1
-            } else if (a.season < b.season) {
-                return 1
             } else {
-                if(a.drop_source.name == b.drop_source.name){
-                    if (a.name > b.name) {
-                        return 1
-                    } else if (a.name == b.name && a.updated_at > b.updated_at) {
-                        return 1
-                    } else {
-                        return -1
-                    }
-                } else if (a.drop_source.name > b.drop_source.name) {
-                    return 1
-                } else {
-                    return -1
-                }
-            }
-            
+                return 1
+            }            
         })
 
         return items.filter(roll => {
